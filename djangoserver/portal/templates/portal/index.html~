@@ -32,8 +32,8 @@ li a:hover {
 <ul>
   <li><a href="/portal">Home</a></li>
   <li><a href="/portal/quiz">Quiz</a></li>
-  <li><a href="#contact">Analysis</a></li>
-  <li><a href="#about">Forum</a></li>
+  <li><a href="/portal/analysis">Analysis</a></li>
+  <li><a href="/portal/forum">Forum</a></li>
 </ul>
 
 </body>
