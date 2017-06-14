@@ -1,40 +1,85 @@
- <!DOCTYPE html>
-<html>
-<head>
-<style>
-ul {
-    list-style-type: none;
-    margin: 0;
-    padding: 0;
-    overflow: hidden;
-    background-color: #333333;
-}
+{% extends 'portal/base.html' %}
+{% block albums_active %}active{% endblock %}
 
-li {
-    float: left;
-}
+{% block body %}  
+  </ul>
+      </div>
+    </div>
+    <div id="content_header"></div>
+    <div id="site_content">
+      <div id="banner"></div>
+	  <div id="sidebar_container">
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <!-- insert your sidebar items here -->
+            <h3>SYMPTOMS</h3>
+            <ul>
+              <li><p>Persistent sadness or low mood. This may be with or without weepiness.</p></li>
+              <li><p>Marked loss of interest or pleasure in activities, even for activities that you normally enjoy.</p></li>
+              <li><p>Disturbed sleep compared with your usual pattern.</p></li>
+              <li><p>Change in appetite. This is often a poor appetite and weight loss.</p></li>
+            </ul>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>MYTHS</h3>
+           <p>Depression is common but many people don't admit to it. Some people feel there is a stigma attached, or that people will think they are weak. Great leaders such as Winston Churchill have suffered depression. Depression is one of the most common illnesses that GPs deal with. People with depression may be told by others to "pull their socks up" or "snap out of it". The truth is, they cannot,and such comments by others are very unhelpful.</p>
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+        <div class="sidebar">
+          <div class="sidebar_top"></div>
+          <div class="sidebar_item">
+            <h3>DO's and DONT's</h3>
+            <ul>
+              <li><p>Don't bottle things up and 'go it alone'.</p></li>
+              <li><p>Do try to distract yourself by doing other things.</p></li>
+              <li><p>Don't drink too much alcohol.</p></li>
+              <li><p>Don't make any major decisions whilst you are depressed.</p></li>
+            </ul>
 
-li a {
-    display: block;
-    color: white;
-    text-align: center;
-    padding: 16px;
-    text-decoration: none;
-}
+          </div>
+          <div class="sidebar_base"></div>
+        </div>
+      </div>
+      <div id="content">
+        <!-- insert the page content here -->
+        <h1>We all face challenges to our mental health. Well done for taking the first step.</h1>
 
-li a:hover {
-    background-color: #111111;
-}
-</style>
-</head>
-<body>
+        <p>Depression is common. Symptoms can affect day-to-day life and can become very distressing. Treatments include talking (psychological) treatments and antidepressant medicines. Treatment takes time to work but has a good chance of success. Some people have recurring episodes of depression and require long-term treatment to keep symptoms away.</p>
 
-<ul>
-  <li><a href="/portal">Home</a></li>
-  <li><a href="/portal/quiz">Quiz</a></li>
-  <li><a href="/portal/analysis">Analysis</a></li>
-  <li><a href="/portal/forum">Forum</a></li>
-</ul>
+        <h2>What is it?</h2>
+        <p>The word depressed is a common everyday word. People might say "I'm depressed" when in fact they mean "I'm fed up because I've had a row, or failed an exam, or lost my job", etc. These ups and downs of life are common and normal. Most people recover quite quickly. With true depression, you have a low mood and other symptoms each day for at least two weeks. Symptoms can also become severe enough to interfere with normal day-to-day activities.</p>
 
-</body>
-</html> 
+        <h2>Who gets depression?</h2>
+        <p>About 5 in 100 adults have depression every year. Sometimes it is mild or lasts just a few weeks. However, an episode of depression serious enough to require treatment occurs in about 1 in 4 women and 1 in 10 men at some point in their lives. Some people have two or more episodes of depression at various times in their life.</p>
+
+        <h2>What causes Depression?</h2>
+        <p>The exact cause is not known. Anyone can develop depression. Some people are more prone to it and it can develop for no apparent reason. You may have no particular problem or worry, but symptoms can develop quite suddenly. So, there may be some genetic factor involved that makes some people more prone than others to depression. 'Genetic' means that the condition is passed on through families.</p>
+        <p>An episode of depression may also be triggered by a life event such as a relationship problem, bereavement, redundancy, illness, etc. In many people it is a mixture of the two. For example, the combination of a mild low mood with some life problem, such as work stress, may lead to a spiral down into depression.</p>
+        <p>Women tend to develop depression more often than men. Particularly common times for women to become depressed are after childbirth (postnatal depression) and the menopause.</p>
+
+        <h2>Some Promising new Treatments</h2>
+        <ul>
+          <li>Eating a Mediterranean diet may help to prevent depression. One theory as to why this may help is that a diet high in olive oil may increase the amount of brain chemical called serotonin. This is similar to the effect of some antidepressants</li>
+          <li>Magnetic stimulation therapy. A study that looked at magnetic stimulation of the brain showed promise to improve depression symptoms.</li>
+          <li>Omega-3 supplements. One research study (cited below) has reported that some people with depression (but not people with depression and anxiety) had an improvement in symptoms after taking omega-3 supplements (fish oil supplements).</li>
+          <li>Ketamine. A small study reported that an injection of ketamine improved symptoms for a few days in some people with otherwise treatment-resistant depression.</li>
+        </ul>
+
+        <h2><a href="/portal/quiz">Take a Test >></a></h2>
+        <h2><a href="/portal/forum">Share Your Story! >></a></h2>
+
+      </div>
+    </div>
+    <div id="content_footer"></div>
+    <div id="footer">
+      <p><a href="/portal">Home</a> | <a href="/portal/quiz">Quiz</a> | <a href="portal/analysis">Analysis</a> | <a href="/portal/forum">Blog</a></p>
+      <p>Copyright &copy; aditi divya ankita
+    </div>
+  </div>
+  {% endblock %}

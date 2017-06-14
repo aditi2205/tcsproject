@@ -4,7 +4,7 @@ from __future__ import unicode_literals
 from django.db import models
 
 # Create your models here.
-class Details(models.Model):
+class Personaldetails(models.Model):
 	Pid = models.AutoField(primary_key=True)
 	Name=models.CharField(max_length=20)
 
@@ -38,12 +38,15 @@ class Details(models.Model):
 	('School','School'),
 	('College','College'),
 	)
-	
-	Student=models.CharField(max_length=20,choices=STUDENT)#college,school etc
+
+	Student=models.CharField(max_length=20,choices=STUDENT, null=True,  blank=True )#college,school etc
 	
 	City=models.CharField(max_length=20)
 	Age=models.IntegerField(null=True)
-	Email_id=models.EmailField(max_length=20,blank=True)
+	Email_id=models.EmailField(max_length=20,null=True,blank=True)
+
+	#def __str__(self):
+          #  return self.Pid + '-' + self.Name
 	
 class Forum(models.Model):
 	 fid=models.AutoField(primary_key=True)
