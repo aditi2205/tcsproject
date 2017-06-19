@@ -3,10 +3,11 @@ from __future__ import unicode_literals
 from django.views import generic
 from django.views.generic import TemplateView
 from django.template import loader
-from .models import Personaldetails
+from .models import Personaldetails, Responses, Result
 from django.views.generic.edit import CreateView
 from django.http import HttpResponse
 from django.urls import reverse_lazy
+from django.forms import ModelForm
 # Create your views here.
 def home(request):
 	template=loader.get_template('portal/index.html')
@@ -23,6 +24,16 @@ class FillInfo(CreateView):
     #template=loader.get_template('portal/info.html')
 	#context=None
 	#return HttpResponse(template.render(context,request))
+
+class letsplay(CreateView):
+    model= Responses
+    fields=['q1','q2','q3','q4','q5']
+    success_url = ('quizres')
+
+
+
+def quizres(request):
+    template= loader.get_template('portal/quizres.html')
 
 
 def quiz(request):
