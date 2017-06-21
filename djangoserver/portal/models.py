@@ -5,7 +5,7 @@ from django.db import models
 
 # Create your models here.
 class Personaldetails(models.Model):
-	Pid = models.AutoField(primary_key=True, unique=True)
+	Pid = models.AutoField(primary_key=True)
 	Name=models.CharField(max_length=20)
 
    
@@ -39,39 +39,36 @@ class Personaldetails(models.Model):
 	('College','College'),
 	)
 
-	Student=models.CharField(max_length=20,choices=STUDENT, null=True,  blank=True )#college,school etc
+	Student=models.CharField(max_length=20,choices=STUDENT )#college,school etc
 	
 	City=models.CharField(max_length=20)
-	Age=models.IntegerField(null=True)
+	Age=models.IntegerField()
 	Email_id=models.EmailField(max_length=20,null=True,blank=True)
 
-	#def __str__(self):
-          #  return self.Pid + '-' + self.Name
-
-
 class Responses(models.Model):
-	id= models.ForeignKey(Personaldetails, primary_key=True)
+	#id= models.ForeignKey(Personaldetails, primary_key=True)
+	id= models.AutoField(Personaldetails,primary_key=True)
 	CHOICE=(
-		( 'option1',0),
-		('option2',1),
-		( 'option3',2),
-		( 'option4',3)
+		(0,0),
+		(1,1),
+		(2,2),
+		(3,3)
 	)
 
-	q1= models.IntegerField(choices=CHOICE, null=True, blank=True)
+	q1= models.IntegerField(choices=CHOICE)
 
-	q2= models.IntegerField(choices=CHOICE, null=True, blank=True)
+	q2= models.IntegerField(choices=CHOICE)
 
-	q3= models.IntegerField(choices=CHOICE, null=True, blank=True)
+	q3= models.IntegerField(choices=CHOICE)
 
-	q4= models.IntegerField(choices=CHOICE, null=True, blank=True)
+	q4= models.IntegerField(choices=CHOICE)
 
-	q5= models.IntegerField(choices=CHOICE, null=True, blank=True)
+	q5= models.IntegerField(choices=CHOICE)
 
 
 class Result(models.Model):
-	Rid= models.ForeignKey(Personaldetails, primary_key=True)
-	result= models.IntegerField(null=True)
+	Rid= models.AutoField(Personaldetails, primary_key=True)
+	result= models.IntegerField()
 
 
 class Forum(models.Model):

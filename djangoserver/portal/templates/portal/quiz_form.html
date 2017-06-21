@@ -1,0 +1,32 @@
+<!DOCTYPE HTML>
+<html>  
+<head>
+ {% load static %}
+ </head>
+ <body>
+ 	<h1>QUIZ</h1>
+ 	<form name="myQuizForm" action="" method="Post">
+    {% csrf_token %}
+
+    <label>ID</label>
+    {{ form.id}}
+    
+ 	<label>Q1</label>
+ 	{{ form.q1}}
+
+ 	<label>Q2</label>
+ 	{{ form.q2}}
+
+ 	<label>Q3</label>
+ 	{{ form.q3}}
+
+ 	<label>Q4</label>
+       {{form.q4}
+
+     <label>Q5</label>
+     {{form.q5}}
+     
+<input type="submit">
+</form>
+
+ </body>
