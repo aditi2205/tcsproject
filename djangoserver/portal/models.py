@@ -8,42 +8,42 @@ class Personaldetails(models.Model):
 	Pid = models.AutoField(primary_key=True)
 	Name=models.CharField(max_length=20)
 
-   
+
 	GENDER=(
 	 ('male','male'),
     ( 'male','female'),
     )
-        
+
 	Gender=models.CharField(max_length=20,choices=GENDER)
-	
+
 	RELATIONSHIP_STATUS=(
 	 ('Single','Single'),
     ( 'Married','Married'),
     ('live_in_relationship','live_in_relationship'),
-    ( 'fling','fling') 
+    ( 'fling','fling')
     )
-        
+
 	RelationshipStatus=models.CharField(max_length=20,choices=RELATIONSHIP_STATUS,)#single,married etc
-	
+
 	OCCUPATION=(
 	 ('Student','Student'),
 	 ('Profession','Profession'),
 	 ('Employment','Employment'),
 	 ('Business','Business')
 		)
-			
+
 	Occupation=models.CharField(max_length=20,choices=OCCUPATION)#Student,working etc
-	
+
 	STUDENT=(
 	('School','School'),
 	('College','College'),
 	)
 
 	Student=models.CharField(max_length=20,choices=STUDENT )#college,school etc
-	
+
 	City=models.CharField(max_length=20)
 	Age=models.IntegerField()
-	Email_id=models.EmailField(max_length=20,null=True,blank=True)
+	Email_id=models.EmailField(max_length=50,null=True,blank=True)
 
 class Responses(models.Model):
 	#id= models.ForeignKey(Personaldetails, primary_key=True)
@@ -71,8 +71,10 @@ class Result(models.Model):
 	result= models.IntegerField()
 
 
-class Forum(models.Model):
-	 fid=models.AutoField(primary_key=True)
-	 Name=models.CharField(max_length=20)
-	 Story=models.CharField(max_length=20)
-
+class Stories(models.Model):
+	 Storyid=models.AutoField(primary_key=True)
+	 Name=models.CharField(max_length=50)
+	 Age=models.IntegerField()
+	 Location=models.CharField(max_length=30)
+	 Story=models.TextField()
+	 Time=models.DateField(auto_now=False, auto_now_add=True)

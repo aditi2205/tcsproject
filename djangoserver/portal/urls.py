@@ -13,5 +13,5 @@ urlpatterns = [
     #url(r'^quiz1/quiz/', views.letsplay, name='quiz'),
     #url(r'^quiz/quizres', views.quizres, name='quiz'),
     url(r'^analysis/', views.analysis, name='analysis'),
-    url(r'^forum/', views.forum, name='forum'),
+    url(r'^stories/', views.stories, name='stories'),
 ]

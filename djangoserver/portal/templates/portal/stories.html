@@ -1,0 +1,10 @@
+<hr>
+{% for story in portal.stories.all %}
+    <div class="story">
+        <div class="date">{{ story.Time }}</div>
+        <strong>{{ story.Name }}</strong>
+        <p>{{ story.Story|linebreaks }}</p>
+    </div>
+{% empty %}
+    <p>No Stories here yet :(</p>
+{% endfor %}
