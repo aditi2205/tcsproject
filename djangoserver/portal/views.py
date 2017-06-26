@@ -3,20 +3,21 @@ from __future__ import unicode_literals
 from django.views import generic
 from django.views.generic import TemplateView
 from django.template import loader
-from .models import Personaldetails, Responses,Result
+from .models import Personaldetails, Responses,Result,Story
 from django.views.generic.edit import CreateView
 from django.http import HttpResponse
 from django.urls import reverse_lazy
 from django.forms import  ModelForm
 from rest_framework import generics, permissions
 from rest_framework.response import Response
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
+from django.utils import timezone
 #from .models import Result
 #from django.contrib.formtools.wizard.views import SessionWizardView
-from .forms import DetailsForm,Quiz
+from .forms import DetailsForm,Quiz,StoryForm
 # Create your views here.
 def home(request):
 	template=loader.get_template('portal/index.html')
@@ -124,4 +125,17 @@ def analysis(request):
     return HttpResponse("Hello, world. You're at the portal analysis.")
 
 def stories(request):
-	return render(request, 'portal/stories.html', {})
+	stories = Story.objects.filter(time__lte=timezone.now()).order_by('-time')
+	return render(request, 'portal/stories.html', {'stories':stories})
+
+def story_new(request):
+	if request.method == "POST":
+		form = StoryForm(request.POST)
+		if form.is_valid():
+			story = form.save(commit=False)
+			story.time = timezone.now()
+			story.save()
+			return redirect('stories')
+	else:
+	    form = StoryForm()
+	return render(request, 'portal/new_story.html', {'form': form})

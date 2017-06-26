@@ -14,4 +14,5 @@ urlpatterns = [
     #url(r'^quiz/quizres', views.quizres, name='quiz'),
     url(r'^analysis/', views.analysis, name='analysis'),
     url(r'^stories/', views.stories, name='stories'),
+    url(r'^story/new/$', views.story_new, name='story_new'),
 ]

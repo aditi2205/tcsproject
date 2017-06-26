@@ -1,10 +1,21 @@
-<hr>
-{% for story in portal.story.all %}
-    <div class="story">
-        <div class="date">{{ story.time }}</div>
-        <strong>{{ story.name }}</strong>
-        <p>{{ story.story|linebreaks }}</p>
-    </div>
-{% empty %}
-    <p>No Stories here yet :(</p>
-{% endfor %}
+{% extends 'portal/base.html' %}
+
+{% block body %}
+
+
+<div id="site_content">
+  <h1>Share Your Story</h1>
+  <a href="{% url 'story_new' %}">Click here to add your story.</a>
+  <hr>
+  {% for story in stories %}
+      <div class="story">
+        <p>{{ story.story_text|linebreaks }}</p>
+        <strong>{{ story.name }}</strong> ({{story.age}})  {{story.location}}
+        <div class="date" align = "right">{{ story.time }}</div>
+      </div>
+      <hr>
+  {% empty %}
+      <p>Be the first to Share Your Story!</p>
+  {% endfor %}
+
+{% endblock %}

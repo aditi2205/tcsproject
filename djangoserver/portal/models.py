@@ -81,7 +81,7 @@ class Story(models.Model):
 	 time=models.DateTimeField(blank=True, null=True)
 
 	 def publish(self):
-		 self.Time = timezone.now()
+		 self.time = timezone.now()
 		 self.save()
 
 	 def __str__(self):
