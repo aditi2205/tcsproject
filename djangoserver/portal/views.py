@@ -124,6 +124,4 @@ def analysis(request):
     return HttpResponse("Hello, world. You're at the portal analysis.")
 
 def stories(request):
-	template=loader.get_template('portal/stories.html')
-	context=None
-	return HttpResponse(template.render(context,request))
+	return render(request, 'portal/stories.html', {})

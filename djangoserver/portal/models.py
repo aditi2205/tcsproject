@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.utils import timezone
 
 # Create your models here.
 class Personaldetails(models.Model):
@@ -71,10 +72,17 @@ class Result(models.Model):
 	result= models.IntegerField()
 
 
-class Stories(models.Model):
-	 Storyid=models.AutoField(primary_key=True)
-	 Name=models.CharField(max_length=50)
-	 Age=models.IntegerField()
-	 Location=models.CharField(max_length=30)
-	 Story=models.TextField()
-	 Time=models.DateField(auto_now=False, auto_now_add=True)
+class Story(models.Model):
+	 storyid=models.AutoField(primary_key=True)
+	 name=models.CharField(max_length=50)
+	 age=models.IntegerField()
+	 location=models.CharField(max_length=30)
+	 story_text=models.TextField()
+	 time=models.DateTimeField(blank=True, null=True)
+
+	 def publish(self):
+		 self.Time = timezone.now()
+		 self.save()
+
+	 def __str__(self):
+		return self.name+', '+str(self.age)
