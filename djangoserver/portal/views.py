@@ -17,12 +17,15 @@ from formtools.wizard.views import SessionWizardView
 from django.utils import timezone
 #from .models import Result
 #from django.contrib.formtools.wizard.views import SessionWizardView
-from .forms import DetailsForm,Quiz,StoryForm
+from .forms import StoryForm
+from .forms import DetailsForm,Quiz,Quiz2, Quiz3, Quiz4, Quiz5, Quiz5, Quiz6, Quiz7, Quiz8
+from .forms import Quiz9, Quiz10, Quiz11, Quiz12, Quiz13, Quiz14, Quiz15, Quiz16, Quiz17
+from .forms import Quiz18, Quiz19, Quiz20, Quiz21
 # Create your views here.
 def home(request):
-	template=loader.get_template('portal/index.html')
-	context=None
-	return HttpResponse(template.render(context,request))
+    template=loader.get_template('portal/index.html')
+    context=None
+    return HttpResponse(template.render(context,request))
    # return HttpResponse("Hello, world. You're at the portal Quiz.")
 
 #def FillInfo(request):
@@ -32,11 +35,9 @@ class ContactWizard(SessionWizardView):
         form_data=process_form_data(form_list)
         form0 = form_dict['0'].save();
         form1 = form_dict['1'].save();
-        val=form_data[1]['q1']+form_data[1]['q2']+form_data[1]['q3']+form_data[1]['q4']+form_data[1]['q5']
+
+        val=form_data[1]['q1']+form_data[1]['q2']+form_data[1]['q3']+form_data[1]['q4']+form_data[1]['q5']+ form_data[1]['q6'] + form_data[1]['q7'] + form_data[1]['q8'] + form_data[1]['q9'] + form_data[1]['q10'] +form_data[1]['q11'] + form_data[1]['q12'] + form_data[1]['q13'] + form_data[1]['q14'] + form_data[1]['q15']+ form_data[1]['q16'] + form_data[1]['q17'] + form_data[1]['q18'] + form_data[1]['q19'] + form_data[1]['q20'] + form_data[1]['q21']
         res=Result(result=val).save();
-
-
-
         return render_to_response('portal/result.html',{'val':val})
 
 
@@ -89,8 +90,8 @@ def process_form_data(form_list):
 
 #def quiz(request):
     #template=loader.get_template('portal/info.html')
-	#context=None
-	#return HttpResponse(template.render(context,request))
+    #context=None
+    #return HttpResponse(template.render(context,request))
 
 
   #def letsplay(request):
@@ -125,17 +126,17 @@ def analysis(request):
     return HttpResponse("Hello, world. You're at the portal analysis.")
 
 def stories(request):
-	stories = Story.objects.filter(time__lte=timezone.now()).order_by('-time')
-	return render(request, 'portal/stories.html', {'stories':stories})
+    stories = Story.objects.filter(time__lte=timezone.now()).order_by('-time')
+    return render(request, 'portal/stories.html', {'stories':stories})
 
 def story_new(request):
-	if request.method == "POST":
-		form = StoryForm(request.POST)
-		if form.is_valid():
-			story = form.save(commit=False)
-			story.time = timezone.now()
-			story.save()
-			return redirect('stories')
-	else:
-	    form = StoryForm()
-	return render(request, 'portal/new_story.html', {'form': form})
+    if request.method == "POST":
+        form = StoryForm(request.POST)
+        if form.is_valid():
+            story = form.save(commit=False)
+            story.time = timezone.now()
+            story.save()
+            return redirect('stories')
+    else:
+        form = StoryForm()
+    return render(request, 'portal/new_story.html', {'form': form})
