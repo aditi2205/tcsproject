@@ -15,6 +15,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
 from django.utils import timezone
+import decision
 #from .models import Result
 #from django.contrib.formtools.wizard.views import SessionWizardView
 from .forms import StoryForm
@@ -38,7 +39,8 @@ class ContactWizard(SessionWizardView):
 
         val=form_data[1]['q1']+form_data[1]['q2']+form_data[1]['q3']+form_data[1]['q4']+form_data[1]['q5']+ form_data[1]['q6'] + form_data[1]['q7'] + form_data[1]['q8'] + form_data[1]['q9'] + form_data[1]['q10'] +form_data[1]['q11'] + form_data[1]['q12'] + form_data[1]['q13'] + form_data[1]['q14'] + form_data[1]['q15']+ form_data[1]['q16'] + form_data[1]['q17'] + form_data[1]['q18'] + form_data[1]['q19'] + form_data[1]['q20'] + form_data[1]['q21']
         res=Result(result=val).save();
-        return render_to_response('portal/result.html',{'val':val})
+        response=decision.decision()  
+        return render_to_response('portal/result.html',{'response':response})
 
 
 
