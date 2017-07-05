@@ -47,9 +47,12 @@ class Personaldetails(models.Model):
 	Age=models.IntegerField()
 	Email_id=models.EmailField(max_length=50,null=True,blank=True)
 
+	def __str__(self):
+		return self.Name;
+
 class Responses(models.Model):
-	#id= models.ForeignKey(Personaldetails, primary_key=True)
-	id= models.AutoField(Personaldetails,primary_key=True)
+	person= models.ForeignKey(Personaldetails, primary_key=True,default=0)
+	# id= models.AutoField(Personaldetails,primary_key=True)
 	CHOICE1 = (
 		(0,'I do not feel sad.'),
 		(1,'I feel sad'),
@@ -231,12 +234,18 @@ class Responses(models.Model):
 	q19 = models.IntegerField(choices=CHOICE19,null=True)
 	q20 = models.IntegerField(choices=CHOICE20,null=True)
 	q21 = models.IntegerField(choices=CHOICE21,null=True)
+	result= models.IntegerField()
 
+	def __str__(self):
+		return str(self.person)
 
 
 class Result(models.Model):
-	Rid= models.AutoField(Personaldetails, primary_key=True)
+	Rid= models.ForeignKey(Personaldetails, primary_key=True,default=0)
 	result= models.IntegerField()
+
+	def __str__(self):
+		return self.Rid+', '+str(self.result)
 
 
 class Story(models.Model):

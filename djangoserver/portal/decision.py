@@ -1,6 +1,6 @@
 from math import log
 import operator
-from .models import Personaldetails
+from .models import Personaldetails,Result,Responses
 from django.core import serializers
 from django.http import HttpResponse
 
@@ -13,7 +13,7 @@ def createDataSet():
     dataSet = list(qvlqs)
     labels = ['id','name', 'gender','relationshipstatus','occupation','student','city','age']
     #change to discrete values
-    
+
     #vlqs = qs.values_list()
     #dataSet = list(vlqs)
     #dataSet = [['boy', 'college','married', 'yes'],
@@ -149,7 +149,7 @@ def grabTree(filename):
     return pickle.load(fr)
 
 # collect data
-def decision():
+def decision(id):
     myDat, labels = createDataSet()
 
 #build a tree
@@ -168,6 +168,6 @@ def decision():
    # answer = classify(mytree, ['gender', 'study', 'relationshipstatus'], ['girl', 'school', 'relation'])
     #print("Hi, the answer is "+ answer + ", depressed")
 #
-    answer = classify(mytree,['id','name', 'gender','relationshipstatus','occupation','student','city','age'], [5 ,'Divya','male','Married','Professional','NA','mm' ,4])
+    fields=[f.name for f in Personaldetails._meta.get_fields()+Responses._meta.get_fields()+Result._meta.get_fields()]
+    answer = classify(mytree,fields, [' ' for field in fields])
     return answer
-

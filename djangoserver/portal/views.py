@@ -15,13 +15,11 @@ from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
 from django.utils import timezone
-import decision
+from .decision import decision
 #from .models import Result
 #from django.contrib.formtools.wizard.views import SessionWizardView
 from .forms import StoryForm
-from .forms import DetailsForm,Quiz,Quiz2, Quiz3, Quiz4, Quiz5, Quiz5, Quiz6, Quiz7, Quiz8
-from .forms import Quiz9, Quiz10, Quiz11, Quiz12, Quiz13, Quiz14, Quiz15, Quiz16, Quiz17
-from .forms import Quiz18, Quiz19, Quiz20, Quiz21
+from .forms import DetailsForm,Quiz
 # Create your views here.
 def home(request):
     template=loader.get_template('portal/index.html')
@@ -33,14 +31,19 @@ def home(request):
 class ContactWizard(SessionWizardView):
   template_name="portal/wizard_quiz.html"
   def done(self, form_list,form_dict,**kwargs):
-        form_data=process_form_data(form_list)
-        form0 = form_dict['0'].save();
-        form1 = form_dict['1'].save();
+    print(form_list)
+    print(form_dict)
+    form_data=process_form_data(form_list)
+    form0 = form_dict['0'].save();
+    form1 = form_dict['1'].save(commit=False);
+    form1.person=form0
+    val=form_data[1]['q1']+form_data[1]['q2']+form_data[1]['q3']+form_data[1]['q4']+form_data[1]['q5']+ form_data[1]['q6'] + form_data[1]['q7'] + form_data[1]['q8'] + form_data[1]['q9'] + form_data[1]['q10'] +form_data[1]['q11'] + form_data[1]['q12'] + form_data[1]['q13'] + form_data[1]['q14'] + form_data[1]['q15']+ form_data[1]['q16'] + form_data[1]['q17'] + form_data[1]['q18'] + form_data[1]['q19'] + form_data[1]['q20'] + form_data[1]['q21']
+    form1.result=val
+    form1.save()
 
-        val=form_data[1]['q1']+form_data[1]['q2']+form_data[1]['q3']+form_data[1]['q4']+form_data[1]['q5']+ form_data[1]['q6'] + form_data[1]['q7'] + form_data[1]['q8'] + form_data[1]['q9'] + form_data[1]['q10'] +form_data[1]['q11'] + form_data[1]['q12'] + form_data[1]['q13'] + form_data[1]['q14'] + form_data[1]['q15']+ form_data[1]['q16'] + form_data[1]['q17'] + form_data[1]['q18'] + form_data[1]['q19'] + form_data[1]['q20'] + form_data[1]['q21']
-        res=Result(result=val).save();
-        response=decision.decision()  
-        return render_to_response('portal/result.html',{'response':response})
+    # res=Result.create(result=val,Rid=form0).save();
+    #response=decision.decision(form0)
+    return render_to_response('portal/result.html',{'response':val})
 
 
 
