@@ -117,14 +117,14 @@ def createTree(dataSet, labels):
 
 
 def classify(inputTree, featLabels, testVec):
-    firstStr = inputTree.keys()[0]
-    #print("fistStr : "+firstStr)
-    secondDict = inputTree[firstStr]
+    firstStr = list(inputTree.keys())[0]
+    print("fistStr : "+firstStr)
+    secondDict = list(inputTree[firstStr])
     #print("secondDict : " + str(secondDict))
     featIndex = featLabels.index(firstStr)
     #print("featIndex : " + str(featIndex))
     key = testVec[featIndex]
-    #print("key : " + str(key))
+    print("key : " + str(key))
     valueOfFeat = secondDict[key]
     #print("valueOfFeat : " + str(valueOfFeat))
     if isinstance(valueOfFeat, dict):

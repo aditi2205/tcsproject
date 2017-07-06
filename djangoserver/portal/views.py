@@ -50,7 +50,7 @@ class ContactWizard(SessionWizardView):
     response=decision(data)
 
     form0.Resultp=response
-    form1=form0.save()
+    form0.save()
 
     form1 = form_dict['1'].save(commit=False);
     form1.person=form0
