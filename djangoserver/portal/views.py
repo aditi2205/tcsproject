@@ -34,16 +34,32 @@ class ContactWizard(SessionWizardView):
     print(form_list)
     print(form_dict)
     form_data=process_form_data(form_list)
-    form0 = form_dict['0'].save();
+    form0=form_dict['0'].save(commit=False);
+    val=form_data[1]['q1']+form_data[1]['q2']+form_data[1]['q3']+form_data[1]['q4']+form_data[1]['q5']+ form_data[1]['q6'] + form_data[1]['q7'] + form_data[1]['q8'] + form_data[1]['q9'] + form_data[1]['q10'] +form_data[1]['q11'] + form_data[1]['q12'] + form_data[1]['q13'] + form_data[1]['q14'] + form_data[1]['q15']+ form_data[1]['q16'] + form_data[1]['q17'] + form_data[1]['q18'] + form_data[1]['q19'] + form_data[1]['q20'] + form_data[1]['q21']
+    form0.Score=val
+
+    data=list()
+    data.append(form0.Gender)
+    data.append(form0.RelationshipStatus)
+    data.append(form0.Occupation)
+    data.append(form0.Student)
+    data.append(form0.City)
+    data.append(form0.Age)
+    data.append(form0.Score)
+
+    response=decision(data)
+
+    form0.Resultp=response
+    form1=form0.save()
+
     form1 = form_dict['1'].save(commit=False);
     form1.person=form0
-    val=form_data[1]['q1']+form_data[1]['q2']+form_data[1]['q3']+form_data[1]['q4']+form_data[1]['q5']+ form_data[1]['q6'] + form_data[1]['q7'] + form_data[1]['q8'] + form_data[1]['q9'] + form_data[1]['q10'] +form_data[1]['q11'] + form_data[1]['q12'] + form_data[1]['q13'] + form_data[1]['q14'] + form_data[1]['q15']+ form_data[1]['q16'] + form_data[1]['q17'] + form_data[1]['q18'] + form_data[1]['q19'] + form_data[1]['q20'] + form_data[1]['q21']
     form1.result=val
     form1.save()
 
     # res=Result.create(result=val,Rid=form0).save();
     #response=decision.decision(form0)
-    return render_to_response('portal/result.html',{'response':val})
+    return render_to_response('portal/result.html',{'response':response})
 
 
 

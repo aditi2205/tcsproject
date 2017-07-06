@@ -1,6 +1,6 @@
 from math import log
 import operator
-from .models import Personaldetails,Result,Responses
+from .models import Personaldetails
 from django.core import serializers
 from django.http import HttpResponse
 
@@ -8,10 +8,10 @@ def createDataSet():
     #response = []
     #response['proposal_list'] = serializers.serialize("json", Personaldetails.objects.all())
     #return HttpResponse(response, content_type="application/json")
-    qs = Personaldetails.objects.all()
-    qvlqs = qs.values_list()
-    dataSet = list(qvlqs)
-    labels = ['id','name', 'gender','relationshipstatus','occupation','student','city','age']
+   # qs = Personaldetails.objects.all()
+    qs=Personaldetails.objects.values_list('Gender','RelationshipStatus','Occupation','Student','City','Age','Score','Resultp')
+    dataSet = list(qs)
+    labels = ['Gender','RelationshipStatus','Occupation','Student','City','Age','Score','Resultp']
     #change to discrete values
 
     #vlqs = qs.values_list()
@@ -149,7 +149,7 @@ def grabTree(filename):
     return pickle.load(fr)
 
 # collect data
-def decision(id):
+def decision(data):
     myDat, labels = createDataSet()
 
 #build a tree
@@ -168,6 +168,6 @@ def decision(id):
    # answer = classify(mytree, ['gender', 'study', 'relationshipstatus'], ['girl', 'school', 'relation'])
     #print("Hi, the answer is "+ answer + ", depressed")
 #
-    fields=[f.name for f in Personaldetails._meta.get_fields()+Responses._meta.get_fields()+Result._meta.get_fields()]
-    answer = classify(mytree,fields, [' ' for field in fields])
+    #answer = classify(mytree,['id','name', 'gender','relationshipstatus','occupation','student','city','age','Email_id','score'], [5 ,'ananya','male','Married','Professional','NA','mm' ,4,'abc@gmail.com'])
+    answer = classify(mytree,['Gender','RelationshipStatus','Occupation','Student','City','Age','Score'], data)
     return answer
