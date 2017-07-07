@@ -1,21 +1,81 @@
-{% extends 'portal/base.html' %}
+<!DOCTYPE HTML>
+{%  load staticfiles  %}
+<html>
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css"/>
 
-{% block body %}
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'portal/newstyle.css' %}"/>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
+</head>
+<body>
+
+  <ul id="slide-out" class="side-nav fixed">
+    <li><h5 class="brand-logo center">DEPRESSION HELP</h5></li>
+    <li class="menu active" id="home"><a href="/">HOME</a></li>
+    <li class="menu" id="quiz1"><a href="/quiz1">QUIZ</a></li>
+    <li class="menu" id="analysis"><a href="/analysis">ANALYSIS</a></li>
+    <li class="menu" id="stories"><a href="/stories">FORUM</a></li>
+
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+  <header>
+    <h1 class="grey-text lighten-2">Share Your Story</h1>
+    <a href="{% url 'story_new' %}" class="btn waves-effect waves-teal">Click here to add your story.</a>
+  </header>
+  <main>
+    <!-- <hr>
 
 
-<div id="site_content">
-  <h1>Share Your Story</h1>
-  <a href="{% url 'story_new' %}">Click here to add your story.</a>
-  <hr>
-  {% for story in stories %}
-      <div class="story">
-        <p>{{ story.story_text|linebreaks }}</p>
-        <strong>{{ story.name }}</strong> ({{story.age}})  {{story.location}}
-        <div class="date" align = "right">{{ story.time }}</div>
+          <p>{{ story.story_text|linebreaks }}</p>
+          <strong>{{ story.name }}</strong> ({{story.age}})  {{story.location}}
+          {{ story.time }}
+
+    <hr> -->
+
+
+    {% for story in stories %}
+    <div class="row">
+        <div class="col s12 m12">
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title">{{ story.name }} , ({{story.age}})  {{story.location}}</span>
+              <p>{{ story.story_text|linebreaks }}</p>
+            </div>
+            <div class="card-action">
+              <a href="#">VIEW FULL STORY</a>
+            </div>
+          </div>
+        </div>
       </div>
-      <hr>
-  {% empty %}
-      <p>Be the first to Share Your Story!</p>
-  {% endfor %}
+      {% empty %}
+          <p>Be the first to Share Your Story!</p>
+      {% endfor %}
+  </main>
+  <footer>
+  </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-{% endblock %}
+  <script>
+  // var $=jQuery;
+  $(document).ready(function() {
+    idx = window.location.href.split('/')[window.location.href.split('/').length - 2];
+    if(window.location.href.split('/')[2]==idx){
+      return 0;
+    }
+    $(".menu").removeClass("active");
+    $("#"+idx).addClass("active");
+
+  });
+
+
+  </script>
+
+</body>

@@ -91,7 +91,9 @@ def majorityCnt(classList):
 
 def createTree(dataSet, labels):
     # extracting data
+    print("dataSet",dataSet)
     classList = [example[-1] for example in dataSet]
+    print("classlist:",classList)
     if classList.count(classList[0]) == len(classList):
         return classList[0]  # stop splitting when all of the classes are equal
     if len(dataSet[0]) == 1:  # stop splitting when there are no more features in dataSet
@@ -117,16 +119,17 @@ def createTree(dataSet, labels):
 
 
 def classify(inputTree, featLabels, testVec):
+    print("inputTree :", list(inputTree.keys()))
     firstStr = list(inputTree.keys())[0]
     print("fistStr : "+firstStr)
-    secondDict = list(inputTree[firstStr])
-    #print("secondDict : " + str(secondDict))
+    secondDict = inputTree[firstStr]
+    print("secondDict : " + str(secondDict))
     featIndex = featLabels.index(firstStr)
-    #print("featIndex : " + str(featIndex))
+    print("featIndex : " + str(featIndex))
     key = testVec[featIndex]
     print("key : " + str(key))
     valueOfFeat = secondDict[key]
-    #print("valueOfFeat : " + str(valueOfFeat))
+    print("valueOfFeat : " + str(valueOfFeat))
     if isinstance(valueOfFeat, dict):
         #print("is instance: "+str(valueOfFeat))
         classLabel = classify(valueOfFeat, featLabels, testVec)
