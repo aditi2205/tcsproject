@@ -1,0 +1,113 @@
+<!--{% extends 'portal/base.html' %}
+{% block body %}-->
+
+<!--<head>
+  <script src="https://cdn.anychart.com/js/7.14.0/anychart-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.anychart.com/css/7.14.0/anychart-ui.min.css" />
+  <style>
+    html, body, #container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/javascript">
+anychart.onDocumentReady(function() {
+  // create pie chart with passed data
+  chart = anychart.pie3d([
+    ['age less than 10', {{ age1 }}] ,
+    ['age less than 4',{{ age2 }}],
+    ['age less than 100',{{ age3 }}],
+  ]);
+
+  // set chart title text settings
+  chart.title('Population in The Shire')
+    //set chart radius
+    .radius('43%');
+
+  // set container id for the chart
+  chart.container('container');
+  // initiate chart drawing
+  chart.draw();
+});
+    </script>
+</body>-->
+<!doctype html>
+<html>
+<head>
+  <script src="https://cdn.anychart.com/js/7.14.0/anychart-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.anychart.com/css/7.14.0/anychart-ui.min.css" />
+  <style>
+    html, body, #container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/javascript">
+anychart.onDocumentReady(function() {
+  // create column chart
+  chart = anychart.column();
+
+  // turn on chart animation
+  chart.animation(true);
+
+  // set chart title text settings
+  chart.title('Analysis of different age groups having depression');
+
+  // create area series with passed data
+  var series = chart.column([
+    ['age less than 10', {{ age1 }}] ,
+    ['age less than 20',{{ age2 }}],
+    ['age less than 30',{{ age3 }}],
+    ['age less than 40',{{ age4 }}],
+    ['age less than 50',{{ age5 }}],
+    ['age greater than 50',{{ age6 }}]
+  ]);
+
+  // set series tooltip settings
+  series.tooltip().titleFormat('{%X}');
+
+  series.tooltip()
+    .position('top')
+    .anchor('bottom')
+    .offsetX(0)
+    .offsetY(5)
+    .format('{%Value}{groupsSeparator: }');
+
+  // set scale minimum
+  chart.yScale().minimum(0);
+
+  // set yAxis labels formatter
+  chart.yAxis().labels().format('{%Value}{groupsSeparator: }');
+
+  // tooltips position and interactivity settings
+  chart.tooltip().positionMode('point');
+  chart.interactivity().hoverMode('byX');
+
+  // axes titles
+  chart.xAxis().title('Age');
+  chart.yAxis().title('Count of people');
+
+  // set container id for the chart
+  chart.container('container');
+
+  // initiate chart drawing
+  chart.draw();
+});
+    </script>
+</body>
+</html>
+
+
+
+<!--{% endblock %}-->
+

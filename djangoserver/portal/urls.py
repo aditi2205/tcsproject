@@ -12,7 +12,11 @@ urlpatterns = [
     #url(r'^quiz1/', views.FillInfo, name='quiz1'),
     #url(r'^quiz1/quiz/', views.letsplay, name='quiz'),
     #url(r'^quiz/quizres', views.quizres, name='quiz'),
-    url(r'^analysis/', views.analysis, name='analysis'),
+    url(r'^analysis/', views.analysis1, name='analysis1'),
+    url(r'^analysis2/', views.analysis2, name='analysis2'),
+    url(r'^analysis3/', views.analysis3, name='analysis3'),
+    url(r'^analysis4/', views.analysis4, name='analysis4'),
+    url(r'^analysis5/', views.analysis5, name='analysis5'),
     url(r'^stories/', views.stories, name='stories'),
     url(r'^story/new/$', views.story_new, name='story_new'),
 ]

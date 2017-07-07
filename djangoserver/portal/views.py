@@ -142,9 +142,36 @@ def process_form_data(form_list):
   #  return HttpResponse(template.render(context, request))
 
 
+def analysis1(request):
+    return render(request, 'portal/analysis1.html')
 
-def analysis(request):
-    return HttpResponse("Hello, world. You're at the portal analysis.")
+def analysis2(request):
+    male=int(Personaldetails.objects.filter(Gender='male').filter( Resultp = "high").count())
+    female=int(Personaldetails.objects.filter(Gender='female').filter( Resultp = "high").count())
+    return render(request, 'portal/analysis/analysis2.html',{'male':male,'female':female})
+
+def analysis3(request):
+    age1=int(Personaldetails.objects.filter( Age__lte ='10').filter( Resultp = "high").count())
+    age2 = int(Personaldetails.objects.filter(Age__lte='20').filter( Resultp = "high").count())
+    age3 = int(Personaldetails.objects.filter(Age__lte='30').filter( Resultp = "high").count())
+    age4 = int(Personaldetails.objects.filter(Age__lte='40').filter( Resultp = "high").count())
+    age5 = int(Personaldetails.objects.filter(Age__lte='50').filter(Resultp="high").count())
+    age6 = int(Personaldetails.objects.filter(Age__gte='50').filter(Resultp="high").count())
+    return render(request, 'portal/analysis/analysis3.html',{'age1':age1,'age2':age2, 'age3':age3, 'age4':age4, 'age5':age5, 'age6':age6})
+
+def analysis4(request):
+    s1=int(Personaldetails.objects.filter(Student__exact="School").filter(Resultp= "high").count())
+    s2 = int(Personaldetails.objects.filter(Student__exact="College").filter(Resultp="high").count())
+
+    return render(request, 'portal/analysis/analysis4.html',{'s1':s1,'s2':s2})
+
+def analysis5(request):
+    male=int(Personaldetails.objects.filter(Gender='male').count())
+    female=int(Personaldetails.objects.filter(Gender='female').count())
+    #querym='''SELECT Gender FROM portal_personaldetails WHERE Gender='male' AND Pid IN (SELECT id FROM portal_responses WHERE q1=2)'''
+    #queryf='''SELECT Gender FROM portal_personaldetails WHERE Gender='female' AND Pid IN (SELECT id FROM portal_responses WHERE q1=2)'''
+    return render(request, 'portal/analysis/analysis5.html',{'male':male,'female':female})
+
 
 def stories(request):
     stories = Story.objects.filter(time__lte=timezone.now()).order_by('-time')
