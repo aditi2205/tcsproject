@@ -1,12 +1,21 @@
 {% extends 'portal/base.html' %}
 
-{% block body %}
-<div id="site_content">
+{% block header %}
+<header>
+      <nav class="top-nav">
+        <div class="container">
+          <a class="brand-logo"><h2>New Story</h2></a>
+        </div>
+      </nav>
+</header>
+{% endblock %}
 
-    <h1>Share Your Story</h1>
+{% block body %}
+<main>
+
     <form method="POST" class="story-form">{% csrf_token %}
         {{ form.as_p }}
         <button type="submit" class="save btn btn-default">Share</button>
     </form>
-</div>
+<main>
 {% endblock %}

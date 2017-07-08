@@ -2,51 +2,56 @@
 {%  load staticfiles  %}
 <html>
 <head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/css/materialize.min.css"/>
 
-  <title>Mine Your Mind</title>
-  <meta name="description" content="website description" />
-  <meta name="keywords" content="website keywords, website keywords" />
-  <!--<meta http-equiv="content-type" content="text/html; charset=windows-1252" />-->
+  <!-- Compiled and minified JavaScript -->
 
- <link rel="stylesheet" type="text/css" href="{% static 'portal/style.css' %}"/>
+
+  <link rel="stylesheet" type="text/css" href="{% static 'portal/newstyle.css' %}"/>
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <!-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script> -->
+
 </head>
-
 <body>
+  {% block header %}
+  {% endblock %}
 
-  <div id="main">
-    <div id="header">
-      <div id="logo">
-        <div id="logo_text">
-          <!-- class="logo_colour", allows you to change the colour of the text -->
-          <h1><a href="index.html">Mine <span class="logo_colour">Your Mind</span></a></h1>
-          <h2>Depressometer</h2>
-        </div>
-      </div>
-      <div id="menubar">
-        <ul id="menu">
-          <!-- put class="selected" in the li tag for the selected page - to highlight which page you're on -->
-          <li class="menu selected" id="home"><a href="/">HOME</a></li>
-          <li class="menu" id="quiz1"><a href="/quiz1">QUIZ</a></li>
-          <li class="menu" id="analysis"><a href="/analysis">ANALYSIS</a></li>
-          <li class="menu" id="stories"><a href="/stories">FORUM</a></li>
 
-        </ul>
-      </div>
-    </div>
+  <ul id="slide-out" class="side-nav fixed">
+    <li><h3 class="brand-logo center">DEPRESSION HELP</h3></li>
+    <li class="menu active" id="home"><a href="/">HOME</a></li>
+    <li class="menu" id="quiz1"><a href="/quiz1">QUIZ</a></li>
+    <li class="menu" id="analysis"><a href="/analysis">ANALYSIS</a></li>
+    <li class="menu" id="stories"><a href="/stories">FORUM</a></li>
+
+  </ul>
+  <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
 
 {% block body %}
 {% endblock %}
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.99.0/js/materialize.min.js"></script>
 <script>
+// var $=jQuery;
 $(document).ready(function() {
   idx = window.location.href.split('/')[window.location.href.split('/').length - 2];
   if(window.location.href.split('/')[2]==idx){
     return 0;
   }
-  $(".menu").removeClass("selected");
-  $("#"+idx).addClass("selected");
+  $(".menu").removeClass("active");
+  $("#"+idx).addClass("active");
+
+  $('select').material_select();
+
 
 });
+
+
 </script>
+
+
 </body>
 </html>

@@ -1,7 +1,22 @@
-header, main, footer {
+main, footer {
       padding-left: 320px;
-      padding-bottom: 10px;
+      padding-right: 0px;
     }
+
+header{
+  padding-left: 300px;
+}
+
+nav {
+  height: 100px;
+  padding-top: 0px;
+  color: #fff;
+  background-color: #90caf9;
+}
+
+.collection .collection-item {
+    background-color: #b2ebf2;
+}
 
     /*@media only screen and (max-width : 992px) {
       header, main, footer {
