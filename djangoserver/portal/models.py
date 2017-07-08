@@ -37,7 +37,7 @@ class Personaldetails(models.Model):
 	 ('Professional','Professional'),
 	 ('Business','Business'),
 	 ('NA', 'Not Applicable')
-		)
+	 )
 
 	Occupation=models.CharField(max_length=20,choices=OCCUPATION)#Student,working etc
 

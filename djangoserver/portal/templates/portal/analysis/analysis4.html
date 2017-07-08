@@ -1,41 +1,48 @@
-{% extends 'portal/base.html' %}
-{% block body %}
 
 
-<html>
-<head>
-  <script src="https://cdn.anychart.com/js/7.14.0/anychart-bundle.min.js"></script>
-  <link rel="stylesheet" href="https://cdn.anychart.com/css/7.14.0/anychart-ui.min.css" />
-  <style>
-    html, body, #container {
-      width: 100%;
-      height: 100%;
-      margin: 0;
-      padding: 0;
-    }
-  </style>
-</head>
-<body>
-    <div id="container"></div>
-    <script type="text/javascript">
-anychart.onDocumentReady(function() {
-  // create pie chart with passed data
-  chart = anychart.pie3d([
-    ['Male', {{ male }}] ,
-    ['Female',{{ female }}],
-  ]);
+<!--{% extends 'portal/base.html' %}
+{% block body %}-->
 
-  // set chart title text settings
-  chart.title('Population in The Shire')
-    //set chart radius
-    .radius('43%');
 
-  // set container id for the chart
-  chart.container('container');
-  // initiate chart drawing
-  chart.draw();
-});
-    </script>
-</body>
-</html>
-{% endblock %}
+    <!doctype html>
+    <html>
+    <head>
+      <script src="https://cdn.anychart.com/js/7.14.0/anychart-bundle.min.js"></script>
+      <link rel="stylesheet" href="https://cdn.anychart.com/css/7.14.0/anychart-ui.min.css" />
+      <style>
+        html, body, #container {
+          width: 100%;
+          height: 100%;
+          margin: 0;
+          padding: 0;
+        }
+      </style>
+    </head>
+    <body>
+        <div id="container"></div>
+        <script type="text/javascript">
+    anychart.onDocumentReady(function() {
+      // create pie chart with passed data
+      chart = anychart.pie([
+        ['School students', {{ s1 }}] ,
+        ['College Students',{{ s2 }}],
+      ]);
+
+      // set chart title text settings
+      chart.title('Analysis of Students suffering from depression')
+        // create empty area in pie chart
+        .innerRadius('40%');
+
+      // set chart labels position to outside
+      chart.labels().position('outside');
+
+      // set container id for the chart
+      chart.container('container');
+      // initiate chart drawing
+      chart.draw();
+    });
+        </script>
+    </body>
+    </html>
+
+<!--{% endblock %}-->

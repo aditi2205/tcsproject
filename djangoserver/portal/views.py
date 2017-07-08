@@ -151,11 +151,11 @@ def analysis2(request):
     return render(request, 'portal/analysis/analysis2.html',{'male':male,'female':female})
 
 def analysis3(request):
-    age1=int(Personaldetails.objects.filter( Age__lte ='10').filter( Resultp = "high").count())
-    age2 = int(Personaldetails.objects.filter(Age__lte='20').filter( Resultp = "high").count())
-    age3 = int(Personaldetails.objects.filter(Age__lte='30').filter( Resultp = "high").count())
-    age4 = int(Personaldetails.objects.filter(Age__lte='40').filter( Resultp = "high").count())
-    age5 = int(Personaldetails.objects.filter(Age__lte='50').filter(Resultp="high").count())
+    age1=int(Personaldetails.objects.filter( Age__lte ='10').filter(Age__gte = '0').filter( Resultp = "high").count())
+    age2 = int(Personaldetails.objects.filter(Age__lte='20').filter(Age__gte = '10').filter( Resultp = "high").count())
+    age3 = int(Personaldetails.objects.filter(Age__lte='30').filter(Age__gte = '20').filter( Resultp = "high").count())
+    age4 = int(Personaldetails.objects.filter(Age__lte='40').filter(Age__gte = '30').filter( Resultp = "high").count())
+    age5 = int(Personaldetails.objects.filter(Age__lte='50').filter(Age__gte = '50').filter(Resultp="high").count())
     age6 = int(Personaldetails.objects.filter(Age__gte='50').filter(Resultp="high").count())
     return render(request, 'portal/analysis/analysis3.html',{'age1':age1,'age2':age2, 'age3':age3, 'age4':age4, 'age5':age5, 'age6':age6})
 
@@ -166,11 +166,34 @@ def analysis4(request):
     return render(request, 'portal/analysis/analysis4.html',{'s1':s1,'s2':s2})
 
 def analysis5(request):
-    male=int(Personaldetails.objects.filter(Gender='male').count())
-    female=int(Personaldetails.objects.filter(Gender='female').count())
+    mm=int(Personaldetails.objects.filter(Resultp= "high").filter(RelationshipStatus = "Married").filter(Gender= "male").count())
+    sm=int(Personaldetails.objects.filter(Resultp= "high").filter(RelationshipStatus = "Single").filter(Gender= "male").count())
+    sf = int(Personaldetails.objects.filter(Resultp= "high").filter(RelationshipStatus = "Single").filter(Gender= "female").count())
+    mf = int(Personaldetails.objects.filter(Resultp= "high").filter(RelationshipStatus = "Married").filter(Gender= "female").count())
+    ml = int(Personaldetails.objects.filter(Resultp="high").filter(RelationshipStatus="live_in_relationship").filter(
+        Gender="male").count())
+    fl = int(Personaldetails.objects.filter(Resultp="high").filter(RelationshipStatus="live_in_relationship").filter(
+        Gender="female").count())
+    mf = int(Personaldetails.objects.filter(Resultp="high").filter(RelationshipStatus="fling").filter(
+        Gender="male").count())
+    ff = int(Personaldetails.objects.filter(Resultp="high").filter(RelationshipStatus="fling").filter(
+        Gender="female").count())
     #querym='''SELECT Gender FROM portal_personaldetails WHERE Gender='male' AND Pid IN (SELECT id FROM portal_responses WHERE q1=2)'''
     #queryf='''SELECT Gender FROM portal_personaldetails WHERE Gender='female' AND Pid IN (SELECT id FROM portal_responses WHERE q1=2)'''
-    return render(request, 'portal/analysis/analysis5.html',{'male':male,'female':female})
+    return render(request, 'portal/analysis/analysis5.html',{'mm':mm, 'mf': mf, 'sm': sm, 'sf': sf, 'ml': ml, 'fl': fl, 'mf': mf, 'ff': ff})
+
+def analysis6(request):
+    tp=int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").count())
+    tb=int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Business").count())
+    fp = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").filter(Gender= "female").count())
+    mp = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").filter(Gender= "male").count())
+    mb = int(Personaldetails.objects.filter(Resultp="high").filter(Occupation = "Business").filter(
+        Gender="male").count())
+    fb = int(Personaldetails.objects.filter(Resultp="high").filter(Occupation = "Business").filter(
+        Gender="female").count())
+
+
+    return render(request, 'portal/analysis/analysis6.html',{'tp':tp, 'tb': tb, 'fp': fp, 'mp': mp, 'fp': fp, 'mb': mb, 'fb': fb})
 
 
 def stories(request):
