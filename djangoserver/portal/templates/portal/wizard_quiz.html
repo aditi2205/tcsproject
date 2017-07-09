@@ -1,15 +1,65 @@
 {% extends 'portal/base.html' %}
 {% block header %}
 <header>
+ <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   <script type="text/javascript">
+     function setreadonly()
+     {
+      //to add js on page loading
+     }
+   </script>
       <nav class="top-nav">
         <div class="container">
-          <a class="brand-logo"><h2 class="header valign-wrapper">QUIZ</h2></a>
+          <a class="brand-logo"><h2 class="header valign-wrapper">Answer a few Questions </h2></a>
         </div>
       </nav>
+    <style type="text/css">
+      
+      input{
+        color:rgb(0,0,0);
+        font-size: 20px;
+        
+      }
+
+.caret {
+    background-color: #0CB2E9;
+    color: white;
+    padding: 12px;
+    border: none;
+    cursor: pointer;
+}
+
+.select-wrapper:hover .caret {
+    background-color: #0B83AB;
+}
+
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+}
+      td{
+        color:rgba(60, 101, 131, 0.9);
+        background-color:rgba(208, 212, 222, 0.9)
+        padding-bottom:.5em;
+        padding-top: .5em;
+
+      }
+      label
+      {
+        font-family:"Sans-serif";
+        font-style: italic;
+        font-size: 25px;
+        color:rgba(60, 101, 131, 0.9)
+      }
+}
+}
+
+    </style>
 </header>
 {% endblock %}
 {% block body %}
 <main>
+<body onload="setreadonly()">
   <div class="container">
 <h4 class="center-align">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h4>
 
@@ -24,10 +74,10 @@
 {% if wizard.form.forms %}
     {{ wizard.form.management_form }}
     {% for form in wizard.form.forms %}
-        {{ form }}
+        {{ form}}
     {% endfor %}
 {% else %}
-    {{ wizard.form }}
+    {{ wizard.form}}
 {% endif %}
 </table>
 {% if wizard.steps.prev %}
@@ -37,6 +87,21 @@
 <button type="submit" class="save btn btn-default">Submit</button>
 </form>
 </div>
+</body>
 </main>
+<script type="text/javascript">
+  //$("#id_gender").change(function () {
+   // var selection = $("#id_gender option:selected").text();
+    //alert("you selected" + selection);
+   // if (selection=='Not Applicable')
+  //  {
+   // $("#id_othergender").show();
+    //}
+   // else
+ //   $("#id_othergender").hide(); 
+
+  });
+
+</script>
 
 {% endblock %}

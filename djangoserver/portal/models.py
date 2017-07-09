@@ -7,15 +7,19 @@ from django.utils import timezone
 # Create your models here.
 class Personaldetails(models.Model):
 	Pid = models.AutoField(primary_key=True)
-	Name=models.CharField(max_length=20)
+	Date = models.DateTimeField(auto_now_add=True)
+	Name=models.CharField(max_length=20,verbose_name ='Your Name')
+
 
 
 	GENDER=(
 	 ('male','male'),
 	( 'male','female'),
+	('Other', 'Other')
 	)
 
-	Gender=models.CharField(max_length=20,choices=GENDER)
+	Gender=models.CharField(max_length=20,choices=GENDER,verbose_name ='Select Your Gender')
+	#Othergender=models.CharField(max_length=100,default='None',null=True,verbose_name ='Gender');
 
 	RELATIONSHIP_STATUS=(
 	 ('Single','Single'),
@@ -24,14 +28,14 @@ class Personaldetails(models.Model):
 	( 'fling','fling')
 	)
 
-	RelationshipStatus=models.CharField(max_length=20,choices=RELATIONSHIP_STATUS,)#single,married etc
+	RelationshipStatus=models.CharField(max_length=20,choices=RELATIONSHIP_STATUS,verbose_name ='Your Current Relationship Status')#single,married etc
 	STUDENT = (
 		('School', 'School'),
 		('College', 'College'),
 		('NA', 'Not Applicable')
 	)
 
-	Student = models.CharField(max_length=20, choices=STUDENT)  # college,school etc
+	Student = models.CharField(max_length=20, choices=STUDENT,verbose_name ='Student')  # college,school etc
 
 	OCCUPATION=(
 	 ('Professional','Professional'),
@@ -39,13 +43,15 @@ class Personaldetails(models.Model):
 	 ('NA', 'Not Applicable')
 	 )
 
-	Occupation=models.CharField(max_length=20,choices=OCCUPATION)#Student,working etc
+	Occupation=models.CharField(max_length=20,choices=OCCUPATION,verbose_name ='Your Work')
+	#Otheroccupation=models.CharField(max_length=100,default='None',null=True,verbose_name ='Occupation');  #Student,working etc
 
 
+	City=models.CharField(max_length=20,verbose_name ='Which City you live in ?')
+	#0thercity=models.CharField(max_length=100,default='None',null=True,verbose_name ='City')
 
-	City=models.CharField(max_length=20)
-	Age=models.IntegerField()
-	Email_id=models.EmailField(max_length=50,null=True,blank=True)
+	Age=models.IntegerField(verbose_name ='Your Age')
+	Email_id=models.EmailField(max_length=50,null=True,blank=True,verbose_name ='Email Id ')
 	Score= models.IntegerField(null=True,blank=True)
 	Resultp= models.CharField(max_length=50,null=True,blank=True)
 
@@ -240,7 +246,6 @@ class Responses(models.Model):
 
 	def __str__(self):
 		return str(self.person)
-
 
 class Result(models.Model):
 	Rid= models.ForeignKey(Personaldetails, primary_key=True,default=0)
