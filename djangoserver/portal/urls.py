@@ -20,4 +20,6 @@ urlpatterns = [
     url(r'^analysis6/', views.analysis5, name='analysis6'),
     url(r'^stories/', views.stories, name='stories'),
     url(r'^story/new/$', views.story_new, name='story_new'),
+    url(r'^story/(?P<pk>\d+)/$', views.story_detail, name='story_detail'),
+    url(r'^post/(?P<pk>\d+)/comment/$', views.add_comment_to_story, name='add_comment_to_story'),
 ]
