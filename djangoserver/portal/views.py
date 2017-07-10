@@ -18,7 +18,7 @@ from django.utils import timezone
 from .decision import decision
 #from .models import Result
 #from django.contrib.formtools.wizard.views import SessionWizardView
-from .forms import StoryForm
+from .forms import StoryForm,CommentForm
 from .forms import DetailsForm,Quiz
 # Create your views here.
 def home(request):
@@ -211,3 +211,20 @@ def story_new(request):
     else:
         form = StoryForm()
     return render(request, 'portal/new_story.html', {'form': form})
+
+def story_detail(request, pk):
+    story = get_object_or_404(Story, storyid=pk)
+    return render(request, 'portal/story_detail.html', {'story': story})
+
+def add_comment_to_story(request, pk):
+    story = get_object_or_404(Story, pk=pk)
+    if request.method == "POST":
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.story = story
+            comment.save()
+            return redirect('story_detail', pk=post.pk)
+    else:
+        form = CommentForm()
+    return render(request, 'blog/add_comment_to_story.html', {'form': form})

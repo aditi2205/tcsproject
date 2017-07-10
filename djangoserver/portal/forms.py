@@ -1,7 +1,7 @@
 from django import forms
 from django.contrib.auth.models import User
 from django.conf import settings
-from .models import Personaldetails,Responses, Story
+from .models import Personaldetails,Responses, Story, Comment
 
 class DetailsForm(forms.ModelForm):
 	class Meta:
@@ -149,4 +149,10 @@ class StoryForm(forms.ModelForm):
 
     class Meta:
         model = Story
-        fields = ('name','age','location','story_text')
+        fields = ('name','age','location','email','story_title','story_text')
+
+class CommentForm(forms.ModelForm):
+
+    class Meta:
+        model = Comment
+        fields = ('author', 'text',)

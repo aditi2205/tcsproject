@@ -252,11 +252,14 @@ class Result(models.Model):
 
 class Story(models.Model):
 	 storyid=models.AutoField(primary_key=True)
-	 name=models.CharField(max_length=50)
-	 age=models.IntegerField()
-	 location=models.CharField(max_length=30)
-	 story_text=models.TextField()
+	 name=models.CharField(max_length=50,default='Anonymous')
+	 age=models.IntegerField(blank=False, null=False)
+	 location=models.CharField(max_length=30,blank=False, null=False)
+	 story_title=models.CharField(max_length=200,blank=False, null=False)
+	 story_text=models.TextField(blank=False, null=False)
+	 likes=models.IntegerField(default=0)
 	 time=models.DateTimeField(blank=True, null=True)
+	 email=models.EmailField(max_length=50,null=True,blank=True)
 
 	 def publish(self):
 		 self.time = timezone.now()
@@ -264,3 +267,17 @@ class Story(models.Model):
 
 	 def __str__(self):
 		 return self.name+', '+str(self.age)
+
+class Comment(models.Model):
+    story = models.ForeignKey(Story, related_name='comment')
+    author = models.CharField(max_length=200)
+    text = models.TextField()
+    created_date = models.DateTimeField(default=timezone.now)
+    approved_comment = models.BooleanField(default=False)
+
+    def approve(self):
+        self.approved_comment = True
+        self.save()
+
+    def __str__(self):
+        return self.text
