@@ -3,23 +3,40 @@ main, footer {
       padding-right: 0px;
     }
 
-header{
-  padding-left: 300px;
-}
+    header{
+      padding-left: 300px;
+      text-align: center;
+    }
+
+
+    @media only screen and (max-width : 992px) {
+         main, footer {
+           padding-left: 10px;
+           padding-right: 10px
+
+         }
+         header{
+           padding-left: 0px;
+           padding-top: 0px;
+           text-align: center;
+         }
+       }
+
+
 
 nav {
-  height: 100px;
-  padding-top: 0px;
+  height: 122px;
+  /*padding-top: 0px;*/
   color: #fff;
   background-color: #90caf9;
 }
+
+
 
 .collection .collection-item {
     background-color: #b2ebf2;
 }
 
-    /*@media only screen and (max-width : 992px) {
-      header, main, footer {
-        padding-left: 0;
-      }
-    }*/
+blockquote{
+  border-left: 5px solid #64b5f6;
+}

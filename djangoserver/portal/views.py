@@ -37,22 +37,22 @@ class ContactWizard(SessionWizardView):
     form0=form_dict['0'].save(commit=False);
     val=form_data[1]['q1']+form_data[1]['q2']+form_data[1]['q3']+form_data[1]['q4']+form_data[1]['q5']+ form_data[1]['q6'] + form_data[1]['q7'] + form_data[1]['q8'] + form_data[1]['q9'] + form_data[1]['q10'] +form_data[1]['q11'] + form_data[1]['q12'] + form_data[1]['q13'] + form_data[1]['q14'] + form_data[1]['q15']+ form_data[1]['q16'] + form_data[1]['q17'] + form_data[1]['q18'] + form_data[1]['q19'] + form_data[1]['q20'] + form_data[1]['q21']
     form0.Score=val
-    
-#THIS IS CODE FOR DIRECT ENTRY OF CLASS LABELS FOR TIME BEING 
+
+#THIS IS CODE FOR DIRECT ENTRY OF CLASS LABELS FOR TIME BEING
 #..DECISION TREE IS COMMENTED DONT DELETE COMMENTS
 
     if form0.Score <=10 & form0.Score >=1:
-      form0.Resultp="These ups and downs are considered normal" 
+      form0.Resultp="These ups and downs are considered normal"
     elif form0.Score <=16 & form0.Score >=11:
       form0.Resultp="Mild mood disturbance"
     elif form0.Score <=20 & form0.Score >=17:
        form0.Resultp="Borderline clinical depression"
     elif form0.Score <=30 & form0.Score >=21:
-       form0.Resultp="Moderate depression" 
+       form0.Resultp="Moderate depression"
     elif form0.Score <=40 & form0.Score >=31:
        form0.Resultp= "Severe depression"
     else:
-        form0.Resultp="Extreme depression" 
+        form0.Resultp="Extreme depression"
 
 #CODE FOR DECISION TREE
     #data=list()
@@ -240,7 +240,22 @@ def add_comment_to_story(request, pk):
             comment = form.save(commit=False)
             comment.story = story
             comment.save()
-            return redirect('story_detail', pk=post.pk)
+            return redirect('story_detail', pk=story.pk)
     else:
         form = CommentForm()
-    return render(request, 'blog/add_comment_to_story.html', {'form': form})
+    return render(request, 'portal/add_comment_to_story.html', {'form': form,'story':story})
+
+def like_story(request):
+    story_id = None
+    if request.method == 'GET':
+        story_id = request.GET['story_id']
+
+    likes = 0
+    if story_id:
+        story = Story.objects.get(storyid=int(story_id))
+        if story:
+            likes = story.likes + 1
+            story.likes =  likes
+            story.save()
+
+    return HttpResponse(likes)

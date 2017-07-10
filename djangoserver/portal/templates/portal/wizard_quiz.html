@@ -1,6 +1,5 @@
 {% extends 'portal/base.html' %}
-{% block header %}
-<header>
+{% block title %}
  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
    <script type="text/javascript">
@@ -9,17 +8,13 @@
       //to add js on page loading
      }
    </script>
-      <nav class="top-nav">
-        <div class="container">
-          <a class="brand-logo"><h2 class="header valign-wrapper">Answer a few Questions </h2></a>
-        </div>
-      </nav>
+      Answer a few Questions
     <style type="text/css">
-      
+
       input{
         color:rgb(0,0,0);
         font-size: 20px;
-        
+
       }
 
 .caret {
@@ -55,7 +50,6 @@ input[type="number"]::-webkit-inner-spin-button {
 }
 
     </style>
-</header>
 {% endblock %}
 {% block body %}
 <main>
@@ -98,10 +92,13 @@ input[type="number"]::-webkit-inner-spin-button {
    // $("#id_othergender").show();
     //}
    // else
- //   $("#id_othergender").hide(); 
+ //   $("#id_othergender").hide();
 
   });
 
+</script>
+<script>
+  var idx="quiz1";
 </script>
 
 {% endblock %}

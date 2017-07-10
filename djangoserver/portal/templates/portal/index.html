@@ -1,6 +1,10 @@
 <!DOCTYPE HTML>
 {% extends 'portal/base.html' %}
 
+{% block title %}
+HOME
+{% endblock %}
+
 {% block body %}
 <main>
   <h2 class="grey-text lighten-2">We all face challenges to our mental health. Well done for taking the first step.</h2>
@@ -61,11 +65,14 @@
         </ul>
       </div>
 
-        <h2><a href="/portal/quiz">Take a Test >></a></h2>
-        <h2><a href="/portal/forum">Share Your Story! >></a></h2>
+        <h2><a href="/quiz1">Take a Test >></a></h2>
+        <h2><a href="/stories">Share Your Story! >></a></h2>
 
   </main>
   <footer>
     <p class="right-align">Copyright &copy; Aditi Divya Ankita
   </footer>
+  <script>
+    var idx="home";
+  </script>
 {% endblock %}

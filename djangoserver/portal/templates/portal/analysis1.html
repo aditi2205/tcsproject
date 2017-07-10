@@ -1,4 +1,9 @@
 {% extends 'portal/base.html' %}
+
+{% block title %}
+ANALYSIS
+{% endblock %}
+
 {% block body %}
 <head>
     <SCRIPT TYPE="text/javascript">
@@ -17,7 +22,6 @@
 </head>
 </head>
 <main>
-    <p style="font=15px"><STRONG>ANALYSIS</STRONG></p>
     <ul>
         <li><A HREF="{% url 'analysis2' %}" onClick="return popup(this, 'Analysis_1')">Analysis of male and females who are having depression.</A></li><br>
         <li><A HREF="{% url 'analysis3' %}" onClick="return popup(this, 'Analysis_2')">Analysis of different age groups.</A></li><br>
@@ -27,5 +31,7 @@
     </ul>
 
 </main>
-
+<script>
+  var idx="analysis";
+</script>
 {% endblock %}

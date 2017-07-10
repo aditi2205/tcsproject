@@ -16,19 +16,44 @@
 
 </head>
 <body>
-  {% block header %}
+  <header>
+
+        <nav class="top-nav">
+
+
+          <div class="container">
+            <a href="#" data-activates="nav-mobile" class="button-collapse top-nav full hide-on-large-only">
+              <i class="large material-icons left">menu</i>
+            </a>
+            <div class="nav-wrapper valign-wrapper">
+              <a class="page-title ">
+                <h2 class="center-align">
+  {% block title %}
   {% endblock %}
+                </h2>
+              </a>
+
+          </div>
+        </div>
+        </nav>
+        <!-- <div class="container">
+
+        </div> -->
+        <ul id="nav-mobile" class="side-nav fixed">
+          <li><h3 class="brand-logo center">Mine Your Mind</h3></li>
+          <li class="menu active" id="home"><a href="/">HOME</a></li>
+          <li class="menu" id="quiz1"><a href="/quiz1">QUIZ</a></li>
+          <li class="menu" id="analysis"><a href="/analysis">ANALYSIS</a></li>
+          <li class="menu" id="stories"><a href="/stories">STORIES</a></li>
+
+        </ul>
+  </header>
 
 
-  <ul id="slide-out" class="side-nav fixed">
-    <li><h3 class="brand-logo center">Mine Your Mind</h3></li>
-    <li class="menu active" id="home"><a href="/">HOME</a></li>
-    <li class="menu" id="quiz1"><a href="/quiz1">QUIZ</a></li>
-    <li class="menu" id="analysis"><a href="/analysis">ANALYSIS</a></li>
-    <li class="menu" id="stories"><a href="/stories">FORUM</a></li>
 
-  </ul>
-  <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+
+  <!-- <div class="container"><a href="#" data-activates="slide-out" class="button-collapse top-nav full hide-on-large-only"><i class="material-icons">menu</i></a></div> -->
+
 
 {% block body %}
 {% endblock %}
@@ -37,16 +62,21 @@
 <script>
 // var $=jQuery;
 $(document).ready(function() {
-  idx = window.location.href.split('/')[window.location.href.split('/').length - 2];
-  if(window.location.href.split('/')[2]==idx){
-    return 0;
-  }
+  // idx = window.location.href.split('/')[window.location.href.split('/').length - 2];
+  // if(window.location.href.split('/')[2]==idx){
+  //   return 0;
+  // }
   $(".menu").removeClass("active");
   $("#"+idx).addClass("active");
 
   $('select').material_select();
 
-
+  $(".button-collapse").sideNav({
+    draggable: true,
+  });
+  // $('.button-collapse').sideNav('show');
+  // // Hide sideNav
+  // $('.button-collapse').sideNav('hide');
 });
 
 

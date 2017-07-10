@@ -1,13 +1,7 @@
 {% extends 'portal/base.html' %}
 
-{% block header %}
-<header>
-      <nav class="top-nav">
-        <div class="container">
-          <a class="brand-logo"><h2 class="header valign-wrapper">STORY by {{story.name}}</h2></a>
-        </div>
-      </nav>
-</header>
+{% block title %}
+STORY by {{story.name}}
 {% endblock %}
 
 {% block body %}
@@ -26,56 +20,56 @@
       <p class="flow-text">{{ story.story_text|linebreaks }}</p>
     </div>
     <div class="section">
-      {{story.likes}} likes
+      <span id="like_count">{{story.likes}}</span> likes
       <div class="right">{{story.comment.count}} comments</div>
     </div>
     <div class="divider"></div>
     <div class="section">
-      <a href="#" class="btn waves-effect waves-light grey valign-wrapper"><i class="material-icons left">favorite</i> Like this post</a>
+      <button id="likes" data-storyid="{{story.storyid}}" class="btn waves-effect waves-light grey valign-wrapper"><i class="material-icons left">favorite</i> Like this post</button>
       <a href="{% url 'add_comment_to_story' pk=story.pk %}" class="right btn waves-effect waves-light grey valign-wrapper"><i class="material-icons left">comment</i> Leave a Comment</a>
+      <!-- <button id="comment" data-storyid="{{story.storyid}}"  class="right btn waves-effect waves-light grey valign-wrapper"><i class="material-icons left">comment</i> Leave a Comment</a> -->
+      <!-- <div class="row">
+        <form class="col s12">
+          <div class="row">
+            <div class="input-field col s12">
+              <textarea id="comment-text" class="materialize-textarea"></textarea>
+              <label for="Comment">Leave a Comment</label>
+            </div>
+          </div>
+        </form>
+      </div> -->
     </div>
-    <div class="comments">
-    {% for comment in story.comments.all %}
-        <div class="comment">
-            {{ comment.created_date }}
-            <strong class="left">{{ comment.author }}</strong>
-            <blockquote>{{ comment.text|linebreaks }}</blockquote>
+    <div class="section">
+    {% for comment in story.comment.all %}
+        <div class="section">
+
+            <div class="flow-text">{{ comment.text|linebreaks }}</div>
+            <strong>{{ comment.author }}</strong>
+            <div class="blue-grey-text text-lighten-1 right">{{ comment.created_date }}</div>
         </div>
+        <div class="divider"></div>
 
     {% endfor %}
   </div>
   </div>
 
 
-    <!-- <div class="section">
-        <a href="{% url 'story_new' %}" class="btn waves-effect grey valign-wrapper">Click here to add your story</a>
-    </div>
-    {% for story in stories %}
-    <div class="row">
-        <div class="col s12 m12">
-          <div class="card hoverable">
-            <div class="card-content">
-              <span class="card-title">{{ story.story_title }}</span>
-              <p class="truncate">{{ story.story_text|linebreaks }}</p>
-              <br>
-              <div class="blue-grey-text text-lighten-1">
-                {{story.time}}
-                <div class="right">by <em>{{story.name}}</em> ({{story.age}})</div>
-              </div>
-            </div>
-            <div class="card-action">
-              <span class="right valign-wrapper"><i class="material-icons">favorite_border</i>   {{story.likes}} likes</span>
-              <a href="{% url 'story_detail' pk=story.pk %}">VIEW FULL STORY</a>
-            </div>
-          </div>
-        </div>
-      </div>
-      {% empty %}
-          <p>Be the first to Share Your Story!</p>
-      {% endfor %} -->
   </main>
   <footer>
   </footer>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
 <script>
+  var idx="stories";
+
+  $('#likes').click(function(){
+        var storyid;
+        storyid = $(this).attr("data-storyid");
+        $.get('/like_story/', {story_id: storyid}, function(data){
+                   $('#like_count').html(data);
+                   $('#likes').hide();
+        });
+    });
+
 </script>
 {% endblock %}
