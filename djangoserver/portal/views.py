@@ -201,16 +201,14 @@ def analysis5(request):
     return render(request, 'portal/analysis/analysis5.html',{'mm':mm, 'mf': mf, 'sm': sm, 'sf': sf, 'ml': ml, 'fl': fl, 'mf': mf, 'ff': ff})
 
 def analysis6(request):
-    tp=int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").count())
-    tb=int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Business").count())
+    tp = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").count())
+    tb = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Business").count())
     fp = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").filter(Gender= "female").count())
     mp = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").filter(Gender= "male").count())
     mb = int(Personaldetails.objects.filter(Resultp="high").filter(Occupation = "Business").filter(
         Gender="male").count())
     fb = int(Personaldetails.objects.filter(Resultp="high").filter(Occupation = "Business").filter(
         Gender="female").count())
-
-
     return render(request, 'portal/analysis/analysis6.html',{'tp':tp, 'tb': tb, 'fp': fp, 'mp': mp, 'fp': fp, 'mb': mb, 'fb': fb})
 
 

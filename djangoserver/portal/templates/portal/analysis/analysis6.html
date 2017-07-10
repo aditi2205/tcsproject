@@ -1,85 +1,77 @@
+<!doctype html>
+<html>
+<head>
+  <script src="https://cdn.anychart.com/js/7.14.0/anychart-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.anychart.com/css/7.14.0/anychart-ui.min.css" />
+  <style>
+    html, body, #container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/javascript">
+anychart.onDocumentReady(function() {
+  // create data set on our data
+  chartData = {
+    title: 'Analysis based on occupation of people',
+    header: ['#', 'Male', 'Female'],
+    rows: [
+      ['Professionals', {{fp}}, {{mp}}],
+      ['Business', {{fb}}, {{mb}}],
 
+    ]
+  };
 
-<!--{% extends 'portal/base.html' %}
-{% block body %}-->
+  // create column chart
+  chart = anychart.column();
 
-    <html>
-    <head>
-      <script src="https://cdn.anychart.com/js/7.14.0/anychart-bundle.min.js"></script>
-      <link rel="stylesheet" href="https://cdn.anychart.com/css/7.14.0/anychart-ui.min.css" />
-      <link rel="stylesheet" href="https://cdn.anychart.com/fonts/2.7.3/anychart.css" />
-      <style>
-        html, body, #container {
-          width: 100%;
-          height: 100%;
-          margin: 0;
-          padding: 0;
-        }
-      </style>
-    </head>
-    <body>
-        <div id="container"></div>
-        <script type="text/javascript">
-    anychart.onDocumentReady(function() {
-      // create data set on our data
-      chartData = {
-        title: 'Analysis of people as per their occupation',
-        header: ['#', 'Male', 'Female'],
-        rows: [
-          ['Professionals', {{tp}}],
-          ['Business', {{tb}}],
-          ['Profesionals(Gender based)', {{mp}}, {{fp}}],
-          ['Business(Gender based)', {{mb}}, {{fb}}],
-        ]
-      };
+  // set chart data
+  chart.data(chartData);
 
-      // create column chart
-      chart = anychart.column3d();
+  // turn on chart animation
+  chart.animation(true);
 
-      // set chart data
-      chart.data(chartData);
+  chart.yAxis().labels().format('{%Value}{groupsSeparator: }');
 
-      // turn on chart animation
-      chart.animation(true);
+  // set titles for Y-axis
+  chart.yAxis().title('Number of people');
 
-      // set axes settings
-      chart.yAxis().title('Number of people');
-      chart.yAxis().labels().format('{%Value}{groupsSeparator: }');
+  chart.labels()
+    .enabled(true)
+    .position('top')
+    .anchor('bottom')
+    .format('{%Value}{groupsSeparator: }');
+  chart.hoverLabels(false);
 
-      // set labels settings
-      chart.labels()
-        .enabled(true)
-        .fontColor('#60727b')
-        .position('top')
-        .anchor('bottom')
-        .format('{%Value}{groupsSeparator: }');
-      chart.hoverLabels().enabled(false);
+  // turn on legend and tune it
+  chart.legend()
+    .enabled(true)
+    .fontSize(13)
+    .padding([0, 0, 20, 0]);
 
-      // turn on legend
-      chart.legend()
-        .enabled(true)
-        .fontSize(13)
-        .padding([0, 0, 20, 0]);
+  // interactivity settings and tooltip position
+  chart.interactivity().hoverMode('single');
 
-      // set interactivity settings
-      chart.interactivity().hoverMode('single');
+  chart.tooltip()
+    .positionMode('point')
+    .position('top')
+    .anchor('bottom')
+    .offsetX(0)
+    .offsetY(5)
+    .titleFormat('{%X}')
+    .format('{%SeriesName} : {%Value}{groupsSeparator: }');
 
-      // set tooltip settings
-      chart.tooltip()
-        .positionMode('point')
-        .position('top')
-        .anchor('bottom')
-        .offsetX(0)
-        .offsetY(5)
-        .format('{%SeriesName}: {%Value}{groupsSeparator: }');
+  // set container id for the chart
+  chart.container('container');
 
-      // set container id for the chart
-      chart.container('container');
-
-      // initiate chart drawing
-      chart.draw();
-    });
-        </script>
-    </body>
-    </html>
-{%endblock%}
+  // initiate chart drawing
+  chart.draw();
+});
+    </script>
+</body>
+</html>

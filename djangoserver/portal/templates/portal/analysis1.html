@@ -1,11 +1,30 @@
 {% extends 'portal/base.html' %}
 {% block body %}
+<head>
+    <SCRIPT TYPE="text/javascript">
+     function popup(mylink, windowname)
+         { if (! window.focus)return true;
+          var href;
+          if (typeof(mylink) == 'string')
+          href=mylink;
+          else href=mylink.href;
+           window.open(href, windowname, 'width=600,height=500,scrollbars=yes');
+            return false;
+             }
+    </SCRIPT>
+
+
+</head>
+</head>
 <main>
-    <p><a href="{% url 'analysis2' %}">Analysis of male and females who are having depression.</a></p>
-    <p> <a href="{% url 'analysis3' %}">Analysis of different age groups.</a></p>
-    <p> <a href="{% url 'analysis4' %}">Analysis of Students suffering from depression.</a></p>
-    <p> <a href="{% url 'analysis5' %}">Analysis of male and females as per their relationship status.</a></p>
-    <p> <a href="{% url 'analysis6' %}">Analysis of people according to their occupation.</a></p>
+    <p style="font=15px"><STRONG>ANALYSIS</STRONG></p>
+    <ul>
+        <li><A HREF="{% url 'analysis2' %}" onClick="return popup(this, 'Analysis_1')">Analysis of male and females who are having depression.</A></li><br>
+        <li><A HREF="{% url 'analysis3' %}" onClick="return popup(this, 'Analysis_2')">Analysis of different age groups.</A></li><br>
+        <li><A HREF="{% url 'analysis4' %}" onClick="return popup(this, 'Analysis_3')">Analysis of Students suffering from depression.</A></li><br>
+        <li><A HREF="{% url 'analysis5' %}" onClick="return popup(this, 'Analysis_4')">Analysis of male and females as per their relationship status.</A></li><br>
+        <li><A HREF="{% url 'analysis6' %}" onClick="return popup(this, 'Analysis_5')">Analysis of people according to their occupation.</A></li><br>
+    </ul>
 
 </main>
 
