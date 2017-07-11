@@ -1,1 +1,1 @@
-web: gunicorn --pythonpath portal portal.wsgi
+web: gunicorn --pythonpath portal djangoserver.wsgi
