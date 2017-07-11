@@ -25,7 +25,6 @@ Flask-WTF==0.12
 gunicorn==19.7.1
 html5lib==1.0b3
 htmlmin==0.1.10
-importlib==1.0.4
 itsdangerous==0.24
 Jinja2==2.7.3
 linecache2==1.0.0
