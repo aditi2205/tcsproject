@@ -1,37 +1,128 @@
 {% extends 'portal/base.html' %}
 
 {% block title %}
-ANALYSIS
+ Analysis
 {% endblock %}
-
 {% block body %}
-<head>
-    <SCRIPT TYPE="text/javascript">
-     function popup(mylink, windowname)
-         { if (! window.focus)return true;
-          var href;
-          if (typeof(mylink) == 'string')
-          href=mylink;
-          else href=mylink.href;
-           window.open(href, windowname, 'width=600,height=500,scrollbars=yes');
-            return false;
-             }
-    </SCRIPT>
 
-
-</head>
-</head>
 <main>
-    <ul>
-        <li><A HREF="{% url 'analysis2' %}" onClick="return popup(this, 'Analysis_1')">Analysis of male and females who are having depression.</A></li><br>
-        <li><A HREF="{% url 'analysis3' %}" onClick="return popup(this, 'Analysis_2')">Analysis of different age groups.</A></li><br>
-        <li><A HREF="{% url 'analysis4' %}" onClick="return popup(this, 'Analysis_3')">Analysis of Students suffering from depression.</A></li><br>
-        <li><A HREF="{% url 'analysis5' %}" onClick="return popup(this, 'Analysis_4')">Analysis of male and females as per their relationship status.</A></li><br>
-        <li><A HREF="{% url 'analysis6' %}" onClick="return popup(this, 'Analysis_5')">Analysis of people according to their occupation.</A></li><br>
-    </ul>
+<head>
+    <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+  <meta charset="utf-8">
+
+  <style>
+  p {
+    width: 400px;
+  }
+
+    button {
+        background-color: transparent ;
+        border: none;
+        color: #64b5f6;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+}
+    button:active {
+        background-color: transparent ;
+        border: none;
+        color: #64b5f6;
+        padding: 15px 32px;
+        text-align: center;
+        text-decoration: none;
+        display: inline-block;
+        font-size: 16px;
+        margin: 4px 2px;
+        cursor: pointer;
+    }
+
+  </style>
+  <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+</head>
+
+<body>
+
+
+
+<div class="w3-container">
+    <div class="w3-card-4" style="height: 100px;">
+        <div class="w3-container w3-center">
+                <button class="btncls">Analysis of male and females who are having depression.</button>
+                <p hidden>
+                 <iframe src="{% url 'analysis2' %} "width="900" height="500">
+                      <p>Your browser does not support iframes.</p>
+                    </iframe>
+                </p>
+        </div>
+    </div>
+
+    <div class="w3-card-4" style="height: 100px;">
+        <div class="w3-container w3-center">
+                <button class="btncls">Analysis of different age groups.</button>
+                <p hidden>
+                 <iframe src="{% url 'analysis3' %} "width="900" height="500">
+                      <p>Your browser does not support iframes.</p>
+                    </iframe>
+                </p>
+        </div>
+    </div>
+
+    <div class="w3-card-4" style="height: 100px;">
+        <div class="w3-container w3-center">
+                <button class="btncls">Analysis of Students suffering from depression.</button>
+                <p hidden>
+                 <iframe src="{% url 'analysis4' %} "width="900" height="500">
+                      <p>Your browser does not support iframes.</p>
+                    </iframe>
+                </p>
+        </div>
+    </div>
+
+     <div class="w3-card-4" style="height: 100px;">
+        <div class="w3-container w3-center">
+                <button class="btncls">Analysis of male and females as per their relationship status.</button>
+                <p hidden>
+                 <iframe src="{% url 'analysis5' %} "width="900" height="500">
+                      <p>Your browser does not support iframes.</p>
+                    </iframe>
+                </p>
+        </div>
+    </div>
+
+
+
+
+    <div class="w3-card-4" style="height: 100px;">
+        <div class="w3-container w3-center">
+                <button class="btncls">Analysis of people according to their occupation.</button>
+                <p hidden>
+                 <iframe src="{% url 'analysis6' %} "width="900" height="500">
+                      <p>Your browser does not support iframes.</p>
+                    </iframe>
+                </p>
+        </div>
+    </div>
+
+
+</div>
+<script>
+$(".btncls").click(function() {
+  $(this).next().slideToggle( "slow" );
+});
+</script>
+
+
+
+
+</body>
 
 </main>
-<script>
-  var idx="analysis";
-</script>
 {% endblock %}
+
+
+
+
