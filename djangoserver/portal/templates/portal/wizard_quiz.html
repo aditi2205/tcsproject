@@ -17,6 +17,18 @@
 
       }
 
+.form{
+  position: relative;
+}      
+
+.container1 {
+  position: absolute;
+  text-align: center;
+  /*border: 3px solid #333;*/
+  width: 600px;
+  height:2000px;
+  margin-left: 180px; 
+}
 .caret {
     background-color: #0CB2E9;
     color: white;
@@ -54,7 +66,7 @@ input[type="number"]::-webkit-inner-spin-button {
 {% block body %}
 <main>
 <body onload="setreadonly()">
-  <div class="container">
+  <div class="container1">
 <h4 class="center-align">Step {{ wizard.steps.step1 }} of {{ wizard.steps.count }}</h4>
 
 {% for field in form %}
@@ -62,6 +74,7 @@ input[type="number"]::-webkit-inner-spin-button {
 {{ field.error }}
 
 {% endfor %}
+<div class="form">
 <form  action="" method="post">{% csrf_token %}
 <table>
 {{ wizard.management_form }}
@@ -80,6 +93,7 @@ input[type="number"]::-webkit-inner-spin-button {
 {% endif %}
 <button type="submit" class="save btn btn-default">Submit</button>
 </form>
+</div>
 </div>
 </body>
 </main>
