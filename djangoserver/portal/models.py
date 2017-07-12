@@ -4,6 +4,14 @@ from __future__ import unicode_literals
 from django.db import models
 from django.utils import timezone
 
+
+class Cities(models.Model):
+	SNo=models.IntegerField(primary_key=True)
+	City= models.CharField(max_length=50)
+	State=models.CharField(max_length=50)
+
+	def __str__(self):
+		return self.City
 # Create your models here.
 class Personaldetails(models.Model):
 	Pid = models.AutoField(primary_key=True)
@@ -47,7 +55,7 @@ class Personaldetails(models.Model):
 	#Otheroccupation=models.CharField(max_length=100,default='None',null=True,verbose_name ='Occupation');  #Student,working etc
 
 
-	City=models.CharField(max_length=20,verbose_name ='Which City you live in ?')
+	City=models.ForeignKey(Cities,verbose_name ='Which City you live in ?')
 	#0thercity=models.CharField(max_length=100,default='None',null=True,verbose_name ='City')
 
 	Age=models.IntegerField(verbose_name ='Your Age')
@@ -71,7 +79,7 @@ class Responses(models.Model):
 	CHOICE2 = (
 		(0, 'I am not particularly discouraged about the future.'),
 		(1, 'I feel discouraged about the future'),
-		(2, ':I feel I have nothing to look forward to.'),
+		(2, 'I feel I have nothing to look forward to.'),
 		(3, 'I feel the future is hopeless and that things cannot improve.')
 
 		)
