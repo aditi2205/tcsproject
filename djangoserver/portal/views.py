@@ -217,7 +217,7 @@ def analysis6(request):
 
 
 def stories(request):
-    stories = Story.objects.filter(time__lte=timezone.now()).order_by('-likes')
+    stories = Story.objects.filter(time__lte=timezone.now()).order_by('-likes','-time')
     return render(request, 'portal/stories.html', {'stories':stories})
 
 def story_new(request):
