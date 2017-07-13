@@ -23,19 +23,19 @@ STORIES
     {% for story in stories %}
     <div class="row">
         <div class="col s12 m12">
-          <div class="card hoverable">
-            <div class="card-content">
-              <span class="card-title">{{ story.story_title }}</span>
-              <p class="truncate">{{ story.story_text|linebreaks }}</p>
+          <div class="card hoverable " id="{{story.storyid}}">
+            <div class="card-content {{story.sentiment}}" >
+              <span class="card-title"><h4>{{ story.story_title }}</h4></span>
+              <p class="truncate">{{ story.story_text }}</p>
               <br>
-              <div class="blue-grey-text text-lighten-1">
+              <div class="grey-text text-darken-1">
                 {{story.time}}
                 <div class="right">by <em>{{story.name}}</em> ({{story.age}})</div>
               </div>
             </div>
             <div class="card-action">
               <span class="right valign-wrapper"><i class="material-icons left">favorite_border</i>{{story.likes}} likes </span>
-              <a href="{% url 'story_detail' pk=story.storyid %}">VIEW FULL STORY</a>
+              <a href="{% url 'story_detail' pk=story.storyid %}" class=" light-blue-text text-darken-4 ">VIEW FULL STORY</a>
             </div>
           </div>
         </div>
@@ -48,5 +48,18 @@ STORIES
   </footer>
   <script>
     var idx="stories";
+
+        {% for story in stories %}
+        if({{story.sentiment}}>0)
+        {
+          $("#{{story.storyid}}").addClass("green accent-2");
+        }
+        if({{story.sentiment}}<0)
+        {
+          $("#{{story.storyid}}").addClass(" deep-orange lighten-2");
+        }
+        {% endfor %}
+
+
   </script>
 {% endblock %}

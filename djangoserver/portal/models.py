@@ -273,6 +273,7 @@ class Story(models.Model):
 	 likes=models.IntegerField(default=0)
 	 time=models.DateTimeField(blank=True, null=True)
 	 email=models.EmailField(max_length=50,null=True,blank=True)
+	 sentiment=models.IntegerField(default=0)
 
 	 def publish(self):
 		 self.time = timezone.now()

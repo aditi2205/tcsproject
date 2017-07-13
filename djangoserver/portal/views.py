@@ -20,6 +20,8 @@ from .decision import decision
 #from django.contrib.formtools.wizard.views import SessionWizardView
 from .forms import StoryForm,CommentForm
 from .forms import DetailsForm,Quiz
+from textblob import TextBlob
+from .sentiment import sentiment
 # Create your views here.
 def home(request):
     template=loader.get_template('portal/index.html')
@@ -213,7 +215,7 @@ def analysis6(request):
 
 
 def stories(request):
-    stories = Story.objects.filter(time__lte=timezone.now()).order_by('-time')
+    stories = Story.objects.filter(time__lte=timezone.now()).order_by('-likes')
     return render(request, 'portal/stories.html', {'stories':stories})
 
 def story_new(request):
@@ -222,6 +224,7 @@ def story_new(request):
         if form.is_valid():
             story = form.save(commit=False)
             story.time = timezone.now()
+            story.sentiment=sentiment(story.story_text)
             story.save()
             return redirect('stories')
     else:
