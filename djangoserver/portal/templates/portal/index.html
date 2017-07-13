@@ -7,7 +7,6 @@ HOME
 
 {% block body %}
 <head>
-  <script src="//code.jquery.com/jquery-1.11.2.min.js"></script>
   <script type="text/javascript">
 
   function setreadonly()
@@ -37,7 +36,7 @@ HOME
         $(".test").mouseleave(function(){
         $(this).css("font-size", "30px");
       });
-  
+
         $("h2").mouseover(function(){
         $(this).css("color", "tomato");
         $(this).css("font-size", "70px");
@@ -200,13 +199,13 @@ HOME
   <footer>
     <p class="right-align">Copyright &copy; Aditi Divya Ankita
   </footer>
-    <script type="text/javascript"> 
+    <script type="text/javascript">
      var idx="home";
-     var index = 1; 
+     var index = 1;
      function plusIndex(n)
-     { index = index + n; 
+     { index = index + n;
       showImage(index);
-       } showImage(1); 
+       } showImage(1);
        function showImage(n)
        { var i;
         var x = document.getElementsByClassName("text");
@@ -216,17 +215,17 @@ HOME
             { index = x.length};
              for(i=0;i<x.length;i++)
               { x[i].style.display = "none"; }
-               x[index-1].style.display = "block"; } 
+               x[index-1].style.display = "block"; }
                autoSlide();
-                function autoSlide(){ 
-                  var i; 
-                  var x = document.getElementsByClassName("text"); 
+                function autoSlide(){
+                  var i;
+                  var x = document.getElementsByClassName("text");
                   for(i=0;i<x.length;i++)
                    { x[i].style.display = "none";
-                    } 
+                    }
                     if(index > x.length)
                       { index = 1};
-                       x[index-1].style.display = "block"; 
+                       x[index-1].style.display = "block";
                        index++;
                         setTimeout(autoSlide,3000);
 
