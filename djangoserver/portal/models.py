@@ -22,7 +22,7 @@ class Personaldetails(models.Model):
 
 	GENDER=(
 	 ('male','male'),
-	( 'male','female'),
+	( 'female','female'),
 	('Other', 'Other')
 	)
 

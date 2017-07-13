@@ -13,6 +13,7 @@ urlpatterns = [
     #url(r'^quiz1/quiz/', views.letsplay, name='quiz'),
     #url(r'^quiz/quizres', views.quizres, name='quiz'),
     url(r'^analysis/', views.analysis1, name='analysis1'),
+    url(r'^analysis0/', views.analysis0, name='analysis0'),
     url(r'^analysis2/', views.analysis2, name='analysis2'),
     url(r'^analysis3/', views.analysis3, name='analysis3'),
     url(r'^analysis4/', views.analysis4, name='analysis4'),

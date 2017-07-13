@@ -1,0 +1,74 @@
+{% extends 'portal/base.html' %}
+{% block body %}
+
+<head>
+  <script src="https://cdn.anychart.com/js/7.14.0/anychart-bundle.min.js"></script>
+  <link rel="stylesheet" href="https://cdn.anychart.com/css/7.14.0/anychart-ui.min.css" />
+  <style>
+    html, body, #container {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+      padding: 0;
+    }
+  </style>
+</head>
+<body>
+    <div id="container"></div>
+    <script type="text/javascript">
+anychart.onDocumentReady(function() {
+  // create column chart
+  chart = anychart.column();
+
+  // turn on chart animation
+  chart.animation(true);
+
+  // set chart title text settings
+  chart.title('Analysis of people based on different stages of Depression');
+
+  // create area series with passed data
+  var series = chart.column([
+    ['normal', {{s1}}],
+    ['Mild mood disturbance', {{s3}}],
+    ['Borderline', {{s4}}],
+    ['Moderate', {{s5}}],
+    ['Severe ', {{s6}}],
+    ['Extreme ', {{s7}}],
+
+  ]);
+
+  // set series tooltip settings
+  series.tooltip().titleFormat('{%X}');
+
+  series.tooltip()
+    .position('top')
+    .anchor('bottom')
+    .offsetX(0)
+    .offsetY(5)
+    .format('{%Value}{groupsSeparator: }');
+
+  // set scale minimum
+  chart.yScale().minimum(0);
+
+  // set yAxis labels formatter
+  chart.yAxis().labels().format('{%Value}{groupsSeparator: }');
+
+  // tooltips position and interactivity settings
+  chart.tooltip().positionMode('point');
+  chart.interactivity().hoverMode('byX');
+
+  // axes titles
+  chart.xAxis().title('Stages of Depression');
+  chart.yAxis().title('Count of people');
+
+  // set container id for the chart
+  chart.container('container');
+
+  // initiate chart drawing
+  chart.draw();
+});
+    </script>
+</body>
+
+{% endblock %}
+

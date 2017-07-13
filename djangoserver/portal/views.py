@@ -15,6 +15,7 @@ from django.shortcuts import redirect
 from django.shortcuts import render_to_response
 from formtools.wizard.views import SessionWizardView
 from django.utils import timezone
+from django.db.models import Q
 from .decision import decision
 #from .models import Result
 #from django.contrib.formtools.wizard.views import SessionWizardView
@@ -45,15 +46,15 @@ class ContactWizard(SessionWizardView):
 #THIS IS CODE FOR DIRECT ENTRY OF CLASS LABELS FOR TIME BEING
 #..DECISION TREE IS COMMENTED DONT DELETE COMMENTS
 
-    if form0.Score <=10 & form0.Score >=0:
+    if form0.Score <=10 and form0.Score >=0:
       form0.Resultp="These ups and downs are considered normal"
-    elif form0.Score <=16 & form0.Score >=11:
+    elif form0.Score <=16 and form0.Score >=11:
       form0.Resultp="Mild mood disturbance"
-    elif form0.Score <=20 & form0.Score >=17:
+    elif form0.Score <=20 and form0.Score >=17:
        form0.Resultp="Borderline clinical depression"
-    elif form0.Score <=30 & form0.Score >=21:
+    elif form0.Score <=30 and form0.Score >=21:
        form0.Resultp="Moderate depression"
-    elif form0.Score <=40 & form0.Score >=31:
+    elif form0.Score <=40 and form0.Score >=31:
        form0.Resultp= "Severe depression"
     else:
         form0.Resultp="Extreme depression"
@@ -81,7 +82,7 @@ class ContactWizard(SessionWizardView):
 
     # res=Result.create(result=val,Rid=form0).save();
     #response=decision.decision(form0)
-    return render_to_response('portal/result.html',{'response':response})
+    return render_to_response('portal/result.html',{'response':response, 'Score':form0.Score})
 
 
 
@@ -167,53 +168,87 @@ def process_form_data(form_list):
 def analysis1(request):
     return render(request, 'portal/analysis1.html')
 
+def analysis0(request):
+    s1=int(Personaldetails.objects.filter(Resultp__exact= "These ups and downs are considered normal").count())
+    s3 = int(Personaldetails.objects.filter(Resultp__exact= "Mild mood disturbance").count())
+    s4 = int(Personaldetails.objects.filter(Resultp__exact= "Borderline clinical depression").count())
+    s5 = int(Personaldetails.objects.filter(Resultp__exact= "Moderate depression").count())
+    s6 = int(Personaldetails.objects.filter(Resultp__exact="Severe depression").count())
+    s7 = int(Personaldetails.objects.filter(Resultp__exact="Extreme depression").count())
+
+    return render(request, 'portal/analysis/analysis0.html',{'s1':s1,'s3':s3,'s4':s4, 's5':s5,'s6':s6, 's7':s7})
+
+
 def analysis2(request):
-    male=int(Personaldetails.objects.filter(Gender='male').filter( Resultp = "high").count())
-    female=int(Personaldetails.objects.filter(Gender='female').filter( Resultp = "high").count())
+    male=int(Personaldetails.objects.filter(Gender='male').filter(Q(Resultp= "Moderate depression")|Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).count())
+    female=int(Personaldetails.objects.filter(Gender='female').filter(Q(Resultp= "Moderate depression")|Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).count())
     return render(request, 'portal/analysis/analysis2.html',{'male':male,'female':female})
 
 def analysis3(request):
-    age1=int(Personaldetails.objects.filter( Age__lte ='10').filter(Age__gte = '0').filter( Resultp = "high").count())
-    age2 = int(Personaldetails.objects.filter(Age__lte='20').filter(Age__gte = '10').filter( Resultp = "high").count())
-    age3 = int(Personaldetails.objects.filter(Age__lte='30').filter(Age__gte = '20').filter( Resultp = "high").count())
-    age4 = int(Personaldetails.objects.filter(Age__lte='40').filter(Age__gte = '30').filter( Resultp = "high").count())
-    age5 = int(Personaldetails.objects.filter(Age__lte='50').filter(Age__gte = '50').filter(Resultp="high").count())
-    age6 = int(Personaldetails.objects.filter(Age__gte='50').filter(Resultp="high").count())
+    agea=int(Personaldetails.objects.filter( Age__lte ='10').filter(Age__gte = '0').filter( Resultp = "Severe depression").count())
+    ageb = int(
+        Personaldetails.objects.filter(Age__lte='10').filter(Age__gte='0').filter(Resultp="Extreme depression").count())
+    age1= agea+ageb
+    agec = int(Personaldetails.objects.filter(Age__lte='20').filter(Age__gte = '10').filter( Resultp = "Severe depression").count())
+    aged = int(
+        Personaldetails.objects.filter(Age__lte='20').filter(Age__gte='10').filter(Resultp="Extreme depression").count())
+    age2= agec+aged
+    agee = int(Personaldetails.objects.filter(Age__lte='30').filter(Age__gte = '20').filter( Resultp = "Severe depression").count())
+    agef = int(
+        Personaldetails.objects.filter(Age__lte='30').filter(Age__gte='20').filter(Resultp="Extreme depression").count())
+    age3= agee+agef
+    ageg = int(Personaldetails.objects.filter(Age__lte='40').filter(Age__gte = '30').filter( Resultp = "Severe depression").count())
+    ageh = int(
+        Personaldetails.objects.filter(Age__lte='40').filter(Age__gte='30').filter(Resultp="Extreme depression").count())
+    age4= ageg+ageh
+    agei = int(Personaldetails.objects.filter(Age__lte='50').filter(Age__gte = '50').filter(Resultp="Severe depression").count())
+    agej = int(Personaldetails.objects.filter(Age__lte='50').filter(Age__gte='50').filter(
+        Resultp="Extreme depression").count())
+    age5= agei+agej;
+
+    agek = int(Personaldetails.objects.filter(Age__gte='50').filter(Resultp="Severe depression").count())
+    agel = int(Personaldetails.objects.filter(Age__gte='50').filter(Resultp="Extreme depression").count())
+    age6= agek+ agel
     return render(request, 'portal/analysis/analysis3.html',{'age1':age1,'age2':age2, 'age3':age3, 'age4':age4, 'age5':age5, 'age6':age6})
 
 def analysis4(request):
-    s1=int(Personaldetails.objects.filter(Student__exact="School").filter(Resultp= "high").count())
-    s2 = int(Personaldetails.objects.filter(Student__exact="College").filter(Resultp="high").count())
+    sa=int(Personaldetails.objects.filter(Student__exact="School").filter(Resultp= "Severe depression").count())
+    sb=int(Personaldetails.objects.filter(Student__exact="School").filter(Resultp= "Extreme depression").count())
+    s1= sa+sb
+    sc= int(Personaldetails.objects.filter(Student__exact="College").filter(Resultp="Severe depression").count())
+    sd=int(Personaldetails.objects.filter(Student__exact="College").filter(Resultp="Extreme depression").count())
+    s2 = sc+sd
 
     return render(request, 'portal/analysis/analysis4.html',{'s1':s1,'s2':s2})
 
 def analysis5(request):
-    mm=int(Personaldetails.objects.filter(Resultp= "high").filter(RelationshipStatus = "Married").filter(Gender= "male").count())
-    sm=int(Personaldetails.objects.filter(Resultp= "high").filter(RelationshipStatus = "Single").filter(Gender= "male").count())
-    sf = int(Personaldetails.objects.filter(Resultp= "high").filter(RelationshipStatus = "Single").filter(Gender= "female").count())
-    mf = int(Personaldetails.objects.filter(Resultp= "high").filter(RelationshipStatus = "Married").filter(Gender= "female").count())
-    ml = int(Personaldetails.objects.filter(Resultp="high").filter(RelationshipStatus="live_in_relationship").filter(
+    mm=int(Personaldetails.objects.filter(Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).filter(RelationshipStatus = "Married").filter(Gender= "male").count())
+    sm=int(Personaldetails.objects.filter(Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).filter(RelationshipStatus = "Single").filter(Gender= "male").count())
+    sf = int(Personaldetails.objects.filter(Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).filter(RelationshipStatus = "Single").filter(Gender= "female").count())
+    mf = int(Personaldetails.objects.filter(Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).filter(RelationshipStatus = "Married").filter(Gender= "female").count())
+    ml = int(Personaldetails.objects.filter(Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).filter(RelationshipStatus="live_in_relationship").filter(
         Gender="male").count())
-    fl = int(Personaldetails.objects.filter(Resultp="high").filter(RelationshipStatus="live_in_relationship").filter(
+    fl = int(Personaldetails.objects.filter(Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).filter(RelationshipStatus="live_in_relationship").filter(
         Gender="female").count())
-    mf = int(Personaldetails.objects.filter(Resultp="high").filter(RelationshipStatus="fling").filter(
+    mf = int(Personaldetails.objects.filter(Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).filter(RelationshipStatus="fling").filter(
         Gender="male").count())
-    ff = int(Personaldetails.objects.filter(Resultp="high").filter(RelationshipStatus="fling").filter(
+    ff = int(Personaldetails.objects.filter(Q(Resultp= "Extreme depression")| Q(Resultp= "Severe depression")).filter(RelationshipStatus="fling").filter(
         Gender="female").count())
-    #querym='''SELECT Gender FROM portal_personaldetails WHERE Gender='male' AND Pid IN (SELECT id FROM portal_responses WHERE q1=2)'''
-    #queryf='''SELECT Gender FROM portal_personaldetails WHERE Gender='female' AND Pid IN (SELECT id FROM portal_responses WHERE q1=2)'''
     return render(request, 'portal/analysis/analysis5.html',{'mm':mm, 'mf': mf, 'sm': sm, 'sf': sf, 'ml': ml, 'fl': fl, 'mf': mf, 'ff': ff})
 
 def analysis6(request):
-    tp = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").count())
-    tb = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Business").count())
-    fp = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").filter(Gender= "female").count())
-    mp = int(Personaldetails.objects.filter(Resultp= "high").filter(Occupation = "Professional").filter(Gender= "male").count())
-    mb = int(Personaldetails.objects.filter(Resultp="high").filter(Occupation = "Business").filter(
-        Gender="male").count())
-    fb = int(Personaldetails.objects.filter(Resultp="high").filter(Occupation = "Business").filter(
-        Gender="female").count())
-    return render(request, 'portal/analysis/analysis6.html',{'tp':tp, 'tb': tb, 'fp': fp, 'mp': mp, 'fp': fp, 'mb': mb, 'fb': fb})
+    malep = int(Personaldetails.objects.filter(Gender='male').filter(
+        Q(Resultp="Moderate depression") | Q(Resultp="Extreme depression") | Q(Resultp="Severe depression")).filter(Occupation__exact="Professional").count())
+    femalep = int(Personaldetails.objects.filter(Gender='female').filter(
+        Q(Resultp="Moderate depression") | Q(Resultp="Extreme depression") | Q(Resultp="Severe depression")).filter(Occupation__exact="Professional").count())
+    maleb = int(Personaldetails.objects.filter(Gender='male').filter(
+        Q(Resultp="Moderate depression") | Q(Resultp="Extreme depression") | Q(Resultp="Severe depression")).filter(
+        Occupation__exact="Business").count())
+    femaleb = int(Personaldetails.objects.filter(Gender='female').filter(
+        Q(Resultp="Moderate depression") | Q(Resultp="Extreme depression") | Q(Resultp="Severe depression")).filter(
+        Occupation__exact="Business").count())
+
+    return render(request, 'portal/analysis/analysis6.html', {'malep': malep, 'femalep': femalep, 'maleb': maleb, 'femaleb': femaleb})
 
 
 def stories(request):

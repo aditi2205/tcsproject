@@ -8,11 +8,28 @@
 <div class="container">
   <div class="section">
       <p class="flow-text">Your quiz result is :</p>
+      <h5>Your Score is: {{Score}}</h5>
       <h5>{{ response }}</h5>
 </div>
+    <p id="demo"></p>
+
 
 <iframe width="100%" height="350px" src="https://www.youtube.com/embed/WfWgThjXpXo" frameborder="0" allowfullscreen></iframe>
 <iframe width="100%" height="350px" src="https://www.youtube.com/embed/y04OcY_4ttU" frameborder="0" allowfullscreen></iframe>
+
+    <h5>Contact for Professional Help:</h5>
+
+    <p>iCALL: 022 25521111</p>
+    <p>VANDRAVELA FOUNDATION: 1860 2662345</p>
+    <p>SNEHA: 044 24640050</p>
+    <p>PARIVARTHAN: +917676602602</p>
+    <p>SAHAI: 080 25497777</p>
+    <p>SUMAITRI: 011 23389090</p>
+    <p>LIFELINE: 033 24637401</p>
+    <p>MAPLE JAR: +917338263303</p>
+<p>If you don't feel like calling, you can chat with a professional on:
+    www.yourdost.com </p>
+    <p>Also check out : https://maplejar.in</p>
 </div>
 
 <!-- <iframe width="420" height="315" src="https://youtu.be/WfWgThjXpXo" frameborder="0" allowfullscreen></iframe> -->
@@ -29,5 +46,20 @@ frameborder="0" allowFullScreen>vid2</iframe> -->
 </main>
 <script>
   var idx="quiz1";
+
+    function myFunction({{Score}}) {
+        if ( {{Score}} <=10 && {{Score}} >=0) {
+            greeting = "http://www.webmd.com/depression/helping-depressed-person";
+        }
+        else if ( {{Score}} <=16 && {{Score}} >=11) {
+            greeting = "http://www.asianage.com/life/more-features/110417/dont-let-depression-slow-you-down-seek-help.html";
+        }
+         else if ( {{Score}} <=20 && {{Score}} >=17) {
+            greeting = "http://indianexpress.com/article/blogs/with-36-of-india-depressed-we-must-end-taboo-around-mental-health/";
+        }
+
+    }
+    document.getElementById("demo").innerHTML = myFunction({{Score}});
+
 </script>
 {% endblock %}
