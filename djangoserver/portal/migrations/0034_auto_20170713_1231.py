@@ -17,7 +17,4 @@ class Migration(migrations.Migration):
             name='City',
             field=models.CharField(max_length=20, verbose_name='Enter the name of your city'),
         ),
-        migrations.DeleteModel(
-            name='Cities',
-        ),
     ]

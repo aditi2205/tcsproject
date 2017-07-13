@@ -14,38 +14,9 @@ class Migration(migrations.Migration):
     ]
 
     operations = [
-        migrations.CreateModel(
-            name='Cities',
-            fields=[
-                ('SNo', models.IntegerField(primary_key=True, serialize=False)),
-                ('City', models.CharField(max_length=50)),
-                ('State', models.CharField(max_length=50)),
-            ],
-        ),
         migrations.RemoveField(
             model_name='story',
             name='comments',
-        ),
-        migrations.AddField(
-            model_name='personaldetails',
-            name='Date',
-            field=models.DateTimeField(auto_now_add=True, default=django.utils.timezone.now),
-            preserve_default=False,
-        ),
-        migrations.AddField(
-            model_name='personaldetails',
-            name='Resultp',
-            field=models.CharField(blank=True, max_length=50, null=True),
-        ),
-        migrations.AddField(
-            model_name='personaldetails',
-            name='Score',
-            field=models.IntegerField(blank=True, null=True),
-        ),
-        migrations.AlterField(
-            model_name='personaldetails',
-            name='City',
-            field=models.ForeignKey(on_delete=django.db.models.deletion.CASCADE, to='portal.Cities', verbose_name='Which City you live in ?'),
         ),
         migrations.AlterField(
             model_name='responses',

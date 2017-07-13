@@ -282,7 +282,7 @@ class Story(models.Model):
 		 return self.name+', '+str(self.age)
 
 class Comment(models.Model):
-    story = models.ForeignKey(Story, related_name='comment')
+    story = models.ForeignKey(Story, related_name='comment',null=True)
     author = models.CharField(max_length=200)
     text = models.TextField()
     created_date = models.DateTimeField(default=timezone.now)
