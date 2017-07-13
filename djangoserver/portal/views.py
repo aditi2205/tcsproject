@@ -28,6 +28,8 @@ def home(request):
     context=None
     return HttpResponse(template.render(context,request))
    # return HttpResponse("Hello, world. You're at the portal Quiz.")
+def result(request):
+    return render(request, 'portal/result.html')
 
 #def FillInfo(request):
 class ContactWizard(SessionWizardView):
@@ -43,7 +45,7 @@ class ContactWizard(SessionWizardView):
 #THIS IS CODE FOR DIRECT ENTRY OF CLASS LABELS FOR TIME BEING
 #..DECISION TREE IS COMMENTED DONT DELETE COMMENTS
 
-    if form0.Score <=10 & form0.Score >=1:
+    if form0.Score <=10 & form0.Score >=0:
       form0.Resultp="These ups and downs are considered normal"
     elif form0.Score <=16 & form0.Score >=11:
       form0.Resultp="Mild mood disturbance"
