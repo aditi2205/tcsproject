@@ -20,6 +20,17 @@ main, footer {
            padding-top: 0px;
            text-align: center;
          }
+         nav .nav-wrapper {
+            text-align: center;
+        }
+        nav .nav-wrapper {
+            position: relative;
+            height: 100%;
+            font-size: 40px;
+        }
+        h2{
+          font-size: 32px;
+        }
        }
 
 

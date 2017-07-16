@@ -6,9 +6,8 @@ HOME
 {% endblock %}
 
 {% block body %}
-<head>
-<meta  name=viewport content='width=device-width'/>
-  <script type="text/javascript">
+<!-- <head>
+   <script type="text/javascript">
 
   function setreadonly()
      {
@@ -45,7 +44,7 @@ HOME
        $("h2").mouseleave(function(){
         $(this).css("color", "grey");
          $(this).css("font-size", "3.56rem");
-      });
+       });
     }
 
   // $(document).ready(function(){
@@ -83,11 +82,12 @@ HOME
       {
         text-align: center;"
         position: relative;
+        margin-left: -143px;
         width: 900px;
         height: 500px;
         /*border: 3px solid #333; */
-        margin-top:50px;
-        padding-top: 150px }
+        margin: 50px;
+        padding: 150px }
          /* ajustement image and text */
       .text
       {
@@ -115,24 +115,24 @@ HOME
         background-color:rgba(208, 212, 222, 0.9)
       }
 
-  </style>
-</head>
-<body onload="setreadonly()">
+  </style> -->
+<!-- </head> -->
+
 <main>
 
 {% load static %}
-<div id="container">
-<div class="text"><img class="slides" src="{% static "portal/hope4.jpg" %}"  width="870" height="450" max-width: 100% /></div>
-<div class="text"><img class="slides" src="{% static "portal/hope6.jpg" %}" width="870" height="450"/></div>
+<div class="section">
+<div class="text"><img class="slides" src="{% static "portal/hope4.jpg" %}" width="100%"/></div>
+<div class="text"><img class="slides" src="{% static "portal/hope6.jpg" %}" width="100%"/></div>
 
-<div class="text"><img class="slides" src="{% static "portal/hope2.jpg" %}" width="870" height="450" /></div>
+<div class="text"><img class="slides" src="{% static "portal/hope2.jpg" %}" width="100%"/></div>
 
- <div class="text"><img class="slides" src="{% static "portal/dep5.jpg" %}"  width="870" height="450" /></div>
- <div class="text"><img class="slides" src="{% static "portal/dep6.jpg" %}"  width="870" height="450" /></div>
- <div class="text"><img class="slides" src="{% static "portal/dep3.jpg" %}"  width="870" height="450" /></div>
+ <div class="text"><img class="slides" src="{% static "portal/dep5.jpg" %}" width="100%" /></div>
+ <div class="text"><img class="slides" src="{% static "portal/dep6.jpg" %}"  width="100%" /></div>
+ <div class="text"><img class="slides" src="{% static "portal/dep3.jpg" %}"   width="100%"/></div>
   <!--<button class="btn" onclick="plusIndex(-1)" id="btn1">&#10094;</button> <button class="btn" onclick="plusIndex(1)" id="btn2">&#10095;</button>-->
 </div>
-<marquee direction="right" class="quote">Have a nice day</marquee>
+<marquee direction="right" class="quote"><h5>Have a nice day</h5></marquee>
   <h2 class="grey-text lighten-2">We all face challenges to our mental health. Well done for taking the first step.</h2>
 
   <p class="flow-text">Depression is common. Symptoms can affect day-to-day life and can become very distressing. Treatments include talking (psychological) treatments and antidepressant medicines. Treatment takes time to work but has a good chance of success. Some people have recurring episodes of depression and require long-term treatment to keep symptoms away.</p>
@@ -195,7 +195,7 @@ HOME
         <h2><a class="test" href="/stories">Share Your Story! >></a></h2>
 
   </main>
-  <body onload="setreadonly()">
+  <!-- <body onload="setreadonly()"> -->
   <footer>
     <p class="right-align">Copyright &copy; Aditi Divya Ankita
   </footer>
