@@ -299,3 +299,6 @@ def like_story(request):
             story.save()
 
     return HttpResponse(likes)
+
+def about(request):
+    return render(request,'portal/about.html')
