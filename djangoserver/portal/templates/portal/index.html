@@ -1,0 +1,224 @@
+<!DOCTYPE HTML>
+{% extends 'portal/base.html' %}
+
+{% block title %}
+HOME
+{% endblock %}
+
+{% block body %}
+<head>
+<meta  name=viewport content='width=device-width'/>
+  <script type="text/javascript">
+  function setreadonly()
+     {
+      $("h5").mouseover(function(){
+        $(this).css("color", "tomato");
+        $(this).css("font-size", "50px");
+     });
+       $("h5").mouseleave(function(){
+        $(this).css("color", "grey");
+         $(this).css("font-size", "40px");
+      });
+        $("h4").mouseover(function(){
+        $(this).css("color", "tomato");
+        $(this).css("font-size", "50px");
+     });
+       $("h4").mouseleave(function(){
+        $(this).css("color", "black");
+         $(this).css("font-size", "2.28rem");
+      });
+       $(".test").mouseover(function(){
+        $(this).css("font-size", "50px");
+      });
+        $(".test").mouseleave(function(){
+        $(this).css("font-size", "30px");
+      });
+        $("h2").mouseover(function(){
+        $(this).css("color", "tomato");
+        $(this).css("font-size", "70px");
+     });
+       $("h2").mouseleave(function(){
+        $(this).css("color", "grey");
+         $(this).css("font-size", "3.56rem");
+      });
+    }
+  // $(document).ready(function(){
+  //  $("h5").mouseover(function(){
+    //    $("h5").css("color", "yellow");
+    //});
+    </script>
+
+
+  <style type="text/css">
+  p{
+    font-size: 20px
+  }
+  h5
+  {
+    color: "grey"
+    font-size:40px;
+  }
+  .test
+  {
+    font-size: 30px;
+  }
+  .quote
+  {
+    font-family: Monospace;
+     font-style: italic;
+     font-size: 30px;
+     color: #c36ea1;
+     margin-top: -20px;
+  }
+     #container
+      {
+        text-align: center;"
+        position: relative;
+        width: 900px;
+        height: 500px;
+        /*border: 3px solid #333; */
+        margin-top:50px;
+        padding-top: 150px }
+         /* ajustement image and text */
+      .text
+      {
+        text-align: center;
+        position: absolute;
+        font-family: Arial,Helvetica,sans-serif;
+        font-size: 22px;
+        font-style: normal;
+         color: black;
+         left:50%;
+         margin-left: -253px;
+         margin-top: -138px;
+         /*border: 3px solid #333;*/
+         width: 870px;
+        height: 470px;
+        }
+      .text img
+       {
+        display: block;
+        margin-top: 0px;
+        padding-bottom: 5px;
+      }
+      li :hover {
+        background-color:rgba(208, 212, 222, 0.9)
+      }
+  </style>
+</head>
+<body onload="setreadonly()">
+<main>
+
+{% load static %}
+<div id="container">
+<div class="text"><img class="slides" src="{% static "portal/hope4.jpg" %}"  width="870" height="450" max-width: 100% /></div>
+<div class="text"><img class="slides" src="{% static "portal/hope6.jpg" %}" width="870" height="450"/></div>
+
+<div class="text"><img class="slides" src="{% static "portal/hope2.jpg" %}" width="870" height="450" /></div>
+
+ <div class="text"><img class="slides" src="{% static "portal/dep5.jpg" %}"  width="870" height="450" /></div>
+ <div class="text"><img class="slides" src="{% static "portal/dep6.jpg" %}"  width="870" height="450" /></div>
+ <div class="text"><img class="slides" src="{% static "portal/dep3.jpg" %}"  width="870" height="450" /></div>
+  <!--<button class="btn" onclick="plusIndex(-1)" id="btn1">&#10094;</button> <button class="btn" onclick="plusIndex(1)" id="btn2">&#10095;</button>-->
+</div>
+<marquee direction="right" class="quote">Have a nice day</marquee>
+  <h2 class="grey-text lighten-2">We all face challenges to our mental health. Well done for taking the first step.</h2>
+
+  <p class="flow-text">Depression is common. Symptoms can affect day-to-day life and can become very distressing. Treatments include talking (psychological) treatments and antidepressant medicines. Treatment takes time to work but has a good chance of success. Some people have recurring episodes of depression and require long-term treatment to keep symptoms away.</p>
+        <div class="divider"></div>
+        <div class="row section">
+          <div class="col s12 m8 l8">
+            <div class="section">
+              <h5>What is it?</h5>
+              <p class="flow-text">The word depressed is a common everyday word. People might say "I'm depressed" when in fact they mean "I'm fed up because I've had a row, or failed an exam, or lost my job", etc. These ups and downs of life are common and normal. Most people recover quite quickly. With true depression, you have a low mood and other symptoms each day for at least two weeks. Symptoms can also become severe enough to interfere with normal day-to-day activities.</p>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <h5 class="marquee-sibling">Who gets depression?</h5>
+              <p class="flow-text">About 5 in 100 adults have depression every year. Sometimes it is mild or lasts just a few weeks. However, an episode of depression serious enough to require treatment occurs in about 1 in 4 women and 1 in 10 men at some point in their lives. Some people have two or more episodes of depression at various times in their life.</p>
+            </div>
+            <div class="divider"></div>
+            <div class="section">
+              <h5>What causes Depression?</h5>
+              <p class="flow-text">The exact cause is not known. Anyone can develop depression. Some people are more prone to it and it can develop for no apparent reason. You may have no particular problem or worry, but symptoms can develop quite suddenly. So, there may be some genetic factor involved that makes some people more prone than others to depression. 'Genetic' means that the condition is passed on through families.</p>
+              <p class="flow-text">An episode of depression may also be triggered by a life event such as a relationship problem, bereavement, redundancy, illness, etc. In many people it is a mixture of the two. For example, the combination of a mild low mood with some life problem, such as work stress, may lead to a spiral down into depression.</p>
+              <p class="flow-text">Women tend to develop depression more often than men. Particularly common times for women to become depressed are after childbirth (postnatal depression) and the menopause.</p>
+            </div>
+
+          </div>
+
+          <div class="marquee-sibling" class="col s12 m4 l4">
+            <ul class="collection with-header">
+              <li class="collection-header"><h4>SYMPTOMS</h4></li>
+               <marquee direction="up"><li class="collection-item"><p>Persistent sadness or low mood. This may be with or without weepiness.</p></li>
+              <li class="collection-item"><p>Marked loss of interest or pleasure in activities, even for activities that you normally enjoy.</p></li>
+              <li class="collection-item"><p>Disturbed sleep compared with your usual pattern.</p></li>
+              <li  class="collection-item"><p>Change in appetite. This is often a poor appetite and weight loss.</p></li></marquee>
+            </ul>
+            <ul class="collection with-header">
+              <li class="collection-header"><h4>MYTHS</h4><li>
+              <marquee direction="up" ><li class="collection-item"><p>Depression is common but many people don't admit to it. Some people feel there is a stigma attached, or that people will think they are weak. Great leaders such as Winston Churchill have suffered depression. Depression is one of the most common illnesses that GPs deal with. People with depression may be told by others to "pull their socks up" or "snap out of it". The truth is, they cannot,and such comments by others are very unhelpful.</p><li></marquee>
+            </ul>
+            <ul class="collection with-header">
+             <li class="collection-header"><h4>DO's and DONT's</h4></li>
+               <marquee direction="up"><li class="collection-item"><p>Don't bottle things up and 'go it alone'.</p></li>
+              <li class="collection-item"><p>Do try to distract yourself by doing other things.</p></li>
+              <li class="collection-item"><p>Don't drink too much alcohol.</p></li>
+              <li class="collection-item"><p>Don't make any major decisions whilst you are depressed.</p></li></marquee>
+            </ul>
+        </div>
+      </div>
+
+      <div class="divider"></div>
+      <div class="section">
+        <h4>Some Promising new Treatments</h4>
+        <ul class="collection ">
+           <li class="collection-item"><span class="title">Eating a Mediterranean diet may help to prevent depression.</span> One theory as to why this may help is that a diet high in olive oil may increase the amount of brain chemical called serotonin. This is similar to the effect of some antidepressants</li>
+          <li class="collection-item">Magnetic stimulation therapy. A study that looked at magnetic stimulation of the brain showed promise to improve depression symptoms.</li>
+          <li class="collection-item">Omega-3 supplements. One research study (cited below) has reported that some people with depression (but not people with depression and anxiety) had an improvement in symptoms after taking omega-3 supplements (fish oil supplements).</li>
+          <li class="collection-item">Ketamine. A small study reported that an injection of ketamine improved symptoms for a few days in some people with otherwise treatment-resistant depression.</li>
+        </ul>
+      </div>
+
+        <h2><a class="test" href="/quiz1">Take a Test >></a></h2>
+        <h2><a class="test" href="/stories">Share Your Story! >></a></h2>
+
+  </main>
+  <body onload="setreadonly()">
+  <footer>
+    <p class="right-align">Copyright &copy; Aditi Divya Ankita
+  </footer>
+    <script type="text/javascript">
+     var idx="home";
+     var index = 1;
+     function plusIndex(n)
+     { index = index + n;
+      showImage(index);
+       } showImage(1);
+       function showImage(n)
+       { var i;
+        var x = document.getElementsByClassName("text");
+        if(n > x.length)
+          { index = 1};
+           if(n < 1)
+            { index = x.length};
+             for(i=0;i<x.length;i++)
+              { x[i].style.display = "none"; }
+               x[index-1].style.display = "block"; }
+               autoSlide();
+                function autoSlide(){
+                  var i;
+                  var x = document.getElementsByClassName("text");
+                  for(i=0;i<x.length;i++)
+                   { x[i].style.display = "none";
+                    }
+                    if(index > x.length)
+                      { index = 1};
+                       x[index-1].style.display = "block";
+                       index++;
+                        setTimeout(autoSlide,3000);
+                         }
+  </script>
+{% endblock %}
+Contact GitHub API Training Shop Blog About
+© 2017 GitHub, Inc. Terms Privacy Security Status Help
