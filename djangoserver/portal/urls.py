@@ -25,5 +25,6 @@ urlpatterns = [
     url(r'^story/(?P<pk>\d+)/comment/$', views.add_comment_to_story, name='add_comment_to_story'),
     url(r'^like_story/$', views.like_story, name='like_story'),
     url(r'^result/', views.result, name='result'),
+    url(r'^about/', views.about, name='about'),
 
 ]
